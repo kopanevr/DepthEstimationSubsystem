@@ -10,7 +10,7 @@
 //
 
 namespace app {
-class Application;
+class ApplicationBootstrapper;
 } // namespace app
 
 //
@@ -46,7 +46,7 @@ private:
   CommandInterpreter(int argc, char *argv[]) { process(argc, argv); }
 
   /// @brief Дружественный класс.
-  friend class app::Application;
+  friend class app::ApplicationBootstrapper;
 
   /// @brief Тело процесса.
   /// @param argc Количество аргументов.

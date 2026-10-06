@@ -19,7 +19,7 @@
 
 #include "ApplicationBootstrapper.hpp"
 
-#include "CommandInterpreter.hpp"
+#include "ApplicationInfoPrinter.hpp"
 
 //
 
@@ -48,26 +48,12 @@ private:
   Application(int argc, char *argv[]);
   ~Application();
 
-  /// @brief Вывод информации о приложении.
-  void printInfo() const;
-
 private:
 /// @brief Контекст приложения.
   std::unique_ptr<app::ApplicationContext> applicationContext_;
   /// @brief Загрузчик.
   std::unique_ptr<ApplicationBootstrapper> applicationBootstrapper_;
-  /// @brief
-  std::unique_ptr<> ;
+  /// @brief Принтер информации о модели.
+  std::unique_ptr<ApplicationInfoPrinter> applicationInfoPrinter_;
 };
-
-/// @brief Вывод информации о приложении.
-inline void Application::printInfo() const {
-  LOG("Информация о приложении:");
-  LOG("Мажорная версия: ", 0);
-  LOG("Минорная версия: ", 0);
-  LOG("Номер сборки: ", 0);
-  LOG("Дата сборки: ", __DATE__);
-  LOG("Время сборки: ", __TIME__);
-  SEPARATOR;
-}
 } // namespace app

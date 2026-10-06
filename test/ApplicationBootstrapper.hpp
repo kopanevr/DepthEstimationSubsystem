@@ -13,8 +13,8 @@
 namespace app {
 class ApplicationBootstrapper final {
 public:
-  ApplicationBootstrapper(std::unique_ptr<ApplicationContext> &applicationContext);
-  ~ApplicationBootstrapper()
+  ApplicationBootstrapper() = default;
+  ~ApplicationBootstrapper() = default;
 
   /// @brief Инициализация.
   /// @details

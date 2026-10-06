@@ -2,15 +2,13 @@ add_executable(Application Application.cpp main.cpp)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SubsystemManager)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager)
 
 target_include_directories(
   Application PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}/ApplicationContext/include
   ${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/BitField/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/TimerManager/include
 )
 
 target_link_libraries(
@@ -38,6 +36,6 @@ add_custom_command(
 add_custom_command(
   TARGET Application
   POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E md5sum Application
+  COMMAND ${CMAKE_COMMAND} -E md5sum Application > ${CMAKE_SOURCE_DIR}/Application.md5
   COMMENT "Расчет контрольной файла."
 )

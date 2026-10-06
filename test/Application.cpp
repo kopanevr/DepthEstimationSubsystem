@@ -19,6 +19,11 @@ Application::Application(int argc, char *argv[]) {
     return;
   }
 
+  applicationInfoPrinter_.reset(new (std::nothrow) ApplicationInfoPrinter());
+  if (!applicationInfoPrinter_) {
+    return;
+  }
+
   // Инициализация.
   if (applicationBootstrapper_->init(argc, argv)) {
     return;

@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/superadmin/Desktop/DepthEstimationSubsystem/build/cmake_install.cmake",
+		"/home/superadmin/Desktop/DepthEstimationSubsystem/build/test/cmake_install.cmake",
+		"/home/superadmin/Desktop/DepthEstimationSubsystem/build/test/CommandInterpreter/cmake_install.cmake",
+		"/home/superadmin/Desktop/DepthEstimationSubsystem/build/test/Subsystems/Logger/cmake_install.cmake",
+		"/home/superadmin/Desktop/DepthEstimationSubsystem/build/test/Subsystems/SubsystemManager/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

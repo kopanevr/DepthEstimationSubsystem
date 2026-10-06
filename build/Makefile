@@ -126,7 +126,7 @@ Application: cmake_check_build_system
 
 # fast build rule for target.
 Application/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Application.dir/build.make src/CMakeFiles/Application.dir/build
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/Application.dir/build.make test/CMakeFiles/Application.dir/build
 .PHONY : Application/fast
 
 #=============================================================================
@@ -139,7 +139,7 @@ CommandInterpreter: cmake_check_build_system
 
 # fast build rule for target.
 CommandInterpreter/fast:
-	$(MAKE) $(MAKESILENT) -f src/CommandInterpreter/CMakeFiles/CommandInterpreter.dir/build.make src/CommandInterpreter/CMakeFiles/CommandInterpreter.dir/build
+	$(MAKE) $(MAKESILENT) -f test/CommandInterpreter/CMakeFiles/CommandInterpreter.dir/build.make test/CommandInterpreter/CMakeFiles/CommandInterpreter.dir/build
 .PHONY : CommandInterpreter/fast
 
 #=============================================================================
@@ -152,21 +152,8 @@ Logger: cmake_check_build_system
 
 # fast build rule for target.
 Logger/fast:
-	$(MAKE) $(MAKESILENT) -f src/Subsystems/Logger/CMakeFiles/Logger.dir/build.make src/Subsystems/Logger/CMakeFiles/Logger.dir/build
+	$(MAKE) $(MAKESILENT) -f test/Subsystems/Logger/CMakeFiles/Logger.dir/build.make test/Subsystems/Logger/CMakeFiles/Logger.dir/build
 .PHONY : Logger/fast
-
-#=============================================================================
-# Target rules for targets named Inference
-
-# Build rule for target.
-Inference: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Inference
-.PHONY : Inference
-
-# fast build rule for target.
-Inference/fast:
-	$(MAKE) $(MAKESILENT) -f src/Subsystems/Inference/CMakeFiles/Inference.dir/build.make src/Subsystems/Inference/CMakeFiles/Inference.dir/build
-.PHONY : Inference/fast
 
 #=============================================================================
 # Target rules for targets named SubsystemManager
@@ -178,7 +165,7 @@ SubsystemManager: cmake_check_build_system
 
 # fast build rule for target.
 SubsystemManager/fast:
-	$(MAKE) $(MAKESILENT) -f src/Subsystems/SubsystemManager/CMakeFiles/SubsystemManager.dir/build.make src/Subsystems/SubsystemManager/CMakeFiles/SubsystemManager.dir/build
+	$(MAKE) $(MAKESILENT) -f test/Subsystems/SubsystemManager/CMakeFiles/SubsystemManager.dir/build.make test/Subsystems/SubsystemManager/CMakeFiles/SubsystemManager.dir/build
 .PHONY : SubsystemManager/fast
 
 # Help Target
@@ -191,7 +178,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Application"
 	@echo "... CommandInterpreter"
-	@echo "... Inference"
 	@echo "... Logger"
 	@echo "... SubsystemManager"
 .PHONY : help
