@@ -39,7 +39,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 14,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
@@ -48,7 +48,7 @@
 			{
 				"command" : 1,
 				"file" : 1,
-				"line" : 16,
+				"line" : 15,
 				"parent" : 3
 			},
 			{
@@ -101,6 +101,10 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "Logger::@705b0f22588962fcd728"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "SubsystemManager::@86553a5aa77a82a1d1eb"
 		}
 	],
@@ -128,6 +132,10 @@
 				},
 				{
 					"backtrace" : 11,
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Logger/include"
+				},
+				{
+					"backtrace" : 11,
 					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/SubsystemManager/include"
 				},
 				{
@@ -140,15 +148,11 @@
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Subsystem/include"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/TimerManager/include"
 				}
 			],
 			"language" : "CXX",
@@ -172,6 +176,10 @@
 		{
 			"backtrace" : 2,
 			"id" : "CommandInterpreter::@e0181e6d622e7baab5b2"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Logger::@705b0f22588962fcd728"
 		},
 		{
 			"backtrace" : 2,
@@ -202,12 +210,13 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
-				"fragment" : "-lInference",
+				"backtrace" : 2,
+				"fragment" : "Subsystems/Logger/libLogger.so",
 				"role" : "libraries"
 			},
 			{
-				"fragment" : "-Wl,-rpath-link,/home/superadmin/Desktop/DepthEstimationSubsystem/build/test/Subsystems/Logger",
+				"backtrace" : 4,
+				"fragment" : "-lInference",
 				"role" : "libraries"
 			}
 		],
@@ -218,6 +227,10 @@
 		{
 			"backtrace" : 2,
 			"id" : "CommandInterpreter::@e0181e6d622e7baab5b2"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Logger::@705b0f22588962fcd728"
 		},
 		{
 			"backtrace" : 2,

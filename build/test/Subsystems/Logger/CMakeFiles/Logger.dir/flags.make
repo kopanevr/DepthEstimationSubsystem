@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = -DLogger_EXPORTS -DORT_NO_EXCEPTIONS
 
-CXX_INCLUDES = -I/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include
+CXX_INCLUDES = -I/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/SubsystemManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/TimerManager/include
 
 CXX_FLAGS =    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -fPIC
 

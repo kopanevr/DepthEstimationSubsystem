@@ -114,6 +114,7 @@ test/Application: test/CMakeFiles/Application.dir/build.make
 test/Application: test/CMakeFiles/Application.dir/compiler_depend.ts
 test/Application: test/CommandInterpreter/libCommandInterpreter.a
 test/Application: test/Subsystems/SubsystemManager/libSubsystemManager.so
+test/Application: test/Subsystems/Logger/libLogger.so
 test/Application: test/CMakeFiles/Application.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/superadmin/Desktop/DepthEstimationSubsystem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Application"
 	cd /home/superadmin/Desktop/DepthEstimationSubsystem/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Application.dir/link.txt --verbose=$(VERBOSE)

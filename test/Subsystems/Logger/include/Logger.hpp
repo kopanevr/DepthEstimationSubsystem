@@ -8,6 +8,7 @@
 //
 
 #include <iostream>
+#include <memory>
 #include <mutex>
 #include <utility>
 
@@ -18,8 +19,12 @@
 
 //
 
+#include "TerminalPrinter.hpp"
+
+//
+
 namespace subsystemManager {
-  class SubsystemManager;
+class SubsystemManager;
 }
 
 //
@@ -38,21 +43,17 @@ public:
   /// @brief
   /// @param args Данные для вывода.
   template <typename... Args> void log(Args &&...args) const {
-    printToTerminal(std::forward<Args>(args)...);
-  }
-
-  /// @brief
-  /// @brief Выводит данные в терминал.
-  /// @param args Данные для вывода.
-  template <typename... Args> void printToTerminal(Args &&...args) const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    ((std::cout << std::forward<Args>(args)), ...);
-    std::cout << std::endl;
+    terminalPrinter_->print(std::forward<Args>(args)...);
   }
 
 private:
   /// @brief Конструктор.
   Logger() {
+    terminalPrinter_.reset(new (std::nothrow) TerminalPrinter());
+    if (!terminalPrinter_) {
+
+    }
+
     // Инициализация.
     init();
   }
@@ -80,8 +81,9 @@ private:
 private:
   /// @brief
   static inline Logger *instance_;
+
   /// @brief
-  mutable std::mutex mutex_;
+  std::unique_ptr<TerminalPrinter> terminalPrinter_;
 };
 } // namespace logger
 
@@ -89,14 +91,20 @@ private:
 
 #define LOG(...) logger::Logger::getInstance()->log(__VA_ARGS__)
 
-#ifndef NDEBUG
-#define DEBUG(...) LOG("[ОТЛАДКА] " __VA_OPT__(, ) __VA_ARGS__)
+#ifndef NDEBUG && __cplusplus >= 202002L
+#define DEBUG(...) LOG("[ОТЛАДКА] " __VA_OPT__(,) __VA_ARGS__)
 #else
 #define DEBUG(...) ((void)0)
 #endif
 
-#define INFO(...) LOG("[ИНФО] " __VA_OPT__(, ) __VA_ARGS__)
-#define WARNING(...) LOG("[ВНИМАНИЕ] " __VA_OPT__(, ) __VA_ARGS__)
-#define ERROR(...) LOG("[ОШИБКА] " __VA_OPT__(, ) __VA_ARGS__)
+#if __cplusplus >= 202002L
+#define INFO(...) LOG("[ИНФО] " __VA_OPT__(,) __VA_ARGS__)
+#define WARNING(...) LOG("[ВНИМАНИЕ] " __VA_OPT__(,) __VA_ARGS__)
+#define ERROR(...) LOG("[ОШИБКА] " __VA_OPT__(,) __VA_ARGS__)
+#else
+#define INFO(...) ((void)0)
+#define WARNING(...) ((void)0)
+#define ERROR(...) ((void)0)
+#endif
 
 #define SEPARATOR LOG("------")

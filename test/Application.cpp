@@ -19,6 +19,7 @@ Application::Application(int argc, char *argv[]) {
     return;
   }
 
+  // Создание принтера информации о приложении.
   applicationInfoPrinter_.reset(new (std::nothrow) ApplicationInfoPrinter());
   if (!applicationInfoPrinter_) {
     return;

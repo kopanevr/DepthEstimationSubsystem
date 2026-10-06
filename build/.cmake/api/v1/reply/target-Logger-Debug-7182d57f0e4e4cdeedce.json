@@ -103,15 +103,19 @@
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Subsystem/include"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/SubsystemManager/include"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/BitField/include"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/TimerManager/include"
 				}
 			],
 			"language" : "CXX",

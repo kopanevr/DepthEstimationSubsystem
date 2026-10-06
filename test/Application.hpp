@@ -34,9 +34,11 @@ namespace app {
 class Application final {
 public:
   /// @brief
-  static Application *getInstance(int argc, char *argv[]) {
-    static Application instance(argc, argv);
-    return &instance;
+  static std::unique_ptr<Application> getInstance(int argc, char *argv[]) {
+    if (!instance_) {
+      instance_.reset(new (std::nothrow) Application(argc, argv));
+    }
+    return instance_;
   }
 
   /// @brief Выполнение.
@@ -49,7 +51,9 @@ private:
   ~Application();
 
 private:
-/// @brief Контекст приложения.
+  /// @brief
+  static inline std::unique_ptr<Application> instance_;
+  /// @brief Контекст приложения.
   std::unique_ptr<app::ApplicationContext> applicationContext_;
   /// @brief Загрузчик.
   std::unique_ptr<ApplicationBootstrapper> applicationBootstrapper_;

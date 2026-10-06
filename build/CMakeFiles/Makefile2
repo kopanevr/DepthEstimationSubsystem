@@ -170,6 +170,7 @@ test/Subsystems/SubsystemManager/clean: test/Subsystems/SubsystemManager/CMakeFi
 
 # All Build rule for target.
 test/CMakeFiles/Application.dir/all: test/CommandInterpreter/CMakeFiles/CommandInterpreter.dir/all
+test/CMakeFiles/Application.dir/all: test/Subsystems/Logger/CMakeFiles/Logger.dir/all
 test/CMakeFiles/Application.dir/all: test/Subsystems/SubsystemManager/CMakeFiles/SubsystemManager.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/Application.dir/build.make test/CMakeFiles/Application.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/Application.dir/build.make test/CMakeFiles/Application.dir/build

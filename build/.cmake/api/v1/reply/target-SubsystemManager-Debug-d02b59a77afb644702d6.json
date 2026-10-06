@@ -38,13 +38,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 11,
+				"line" : 10,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 16,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
@@ -123,27 +123,19 @@
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Subsystem/include"
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include"
-				},
-				{
-					"backtrace" : 10,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/include"
-				},
-				{
-					"backtrace" : 2,
 					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Subsystems/Logger/include"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/BitField/include"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include"
+					"path" : "/home/superadmin/Desktop/DepthEstimationSubsystem/test/Utilities/TimerManager/include"
 				}
 			],
 			"language" : "CXX",

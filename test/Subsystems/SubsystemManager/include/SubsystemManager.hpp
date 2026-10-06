@@ -139,5 +139,3 @@ private:
   static inline subsystemManager::SubsystemManager *instance_;
 };
 } // namespace subsystemManager
-
-#undef ADD_SUBSYSTEM
