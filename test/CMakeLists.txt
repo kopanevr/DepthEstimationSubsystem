@@ -1,0 +1,44 @@
+add_executable(Application Application.cpp main.cpp)
+
+add_subdirectory(${CMAKE_SOURCE_DIR}/CommandInterpreter)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Subsystems/Logger)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/Subsystems/Inference)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Subsystems/SubsystemManager)
+
+target_include_directories(
+  Application PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/ApplicationContext/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/BitField/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/TimerManager/include
+)
+
+target_link_libraries(
+  Application PRIVATE
+  CommandInterpreter
+  SubsystemManager
+)
+
+add_custom_command(
+  TARGET Application
+  POST_BUILD
+  COMMAND size Application --format=gnu
+  COMMENT "Размеры секций:"
+)
+
+add_custom_command(
+  TARGET Application
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
+          ${CMAKE_SOURCE_DIR}/models
+          ${CMAKE_BINARY_DIR}/models
+  COMMENT "Копирование директории моделей в ${CMAKE_BINARY_DIR}."
+)
+
+add_custom_command(
+  TARGET Application
+  POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E md5sum Application
+  COMMENT "Расчет контрольной файла."
+)

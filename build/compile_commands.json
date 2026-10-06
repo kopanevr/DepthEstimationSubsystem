@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/home/superadmin/Desktop/DepthEstimationSubsystem/build/src",
+  "command": "/usr/bin/clang++ -DORT_NO_EXCEPTIONS -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/ApplicationContext/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/CommandInterpreter/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/SubsystemManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/thirdParty/onnxruntime-linux-x64-1.30.0/include    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -o CMakeFiles/Application.dir/Application.cpp.o -c /home/superadmin/Desktop/DepthEstimationSubsystem/src/Application.cpp",
+  "file": "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Application.cpp",
+  "output": "src/CMakeFiles/Application.dir/Application.cpp.o"
+},
+{
+  "directory": "/home/superadmin/Desktop/DepthEstimationSubsystem/build/src",
+  "command": "/usr/bin/clang++ -DORT_NO_EXCEPTIONS -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/ApplicationContext/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/CommandInterpreter/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/SubsystemManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/thirdParty/onnxruntime-linux-x64-1.30.0/include    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -o CMakeFiles/Application.dir/main.cpp.o -c /home/superadmin/Desktop/DepthEstimationSubsystem/src/main.cpp",
+  "file": "/home/superadmin/Desktop/DepthEstimationSubsystem/src/main.cpp",
+  "output": "src/CMakeFiles/Application.dir/main.cpp.o"
+},
+{
+  "directory": "/home/superadmin/Desktop/DepthEstimationSubsystem/build/src/CommandInterpreter",
+  "command": "/usr/bin/clang++ -DORT_NO_EXCEPTIONS -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/CommandInterpreter/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -o CMakeFiles/CommandInterpreter.dir/src/CommandInterpreter.cpp.o -c /home/superadmin/Desktop/DepthEstimationSubsystem/src/CommandInterpreter/src/CommandInterpreter.cpp",
+  "file": "/home/superadmin/Desktop/DepthEstimationSubsystem/src/CommandInterpreter/src/CommandInterpreter.cpp",
+  "output": "src/CommandInterpreter/CMakeFiles/CommandInterpreter.dir/src/CommandInterpreter.cpp.o"
+},
+{
+  "directory": "/home/superadmin/Desktop/DepthEstimationSubsystem/build/src/Subsystems/Logger",
+  "command": "/usr/bin/clang++ -DLogger_EXPORTS -DORT_NO_EXCEPTIONS -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -fPIC -o CMakeFiles/Logger.dir/src/Logger.cpp.o -c /home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/src/Logger.cpp",
+  "file": "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/src/Logger.cpp",
+  "output": "src/Subsystems/Logger/CMakeFiles/Logger.dir/src/Logger.cpp.o"
+},
+{
+  "directory": "/home/superadmin/Desktop/DepthEstimationSubsystem/build/src/Subsystems/Inference",
+  "command": "/usr/bin/clang++ -DInference_EXPORTS -DORT_NO_EXCEPTIONS -DUSER_OPTION_SHOW_MODEL_INFO -I/home/superadmin/Desktop/DepthEstimationSubsystem/thirdParty/onnxruntime-linux-x64-1.30.0/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -fPIC -o CMakeFiles/Inference.dir/src/Inference.cpp.o -c /home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/src/Inference.cpp",
+  "file": "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/src/Inference.cpp",
+  "output": "src/Subsystems/Inference/CMakeFiles/Inference.dir/src/Inference.cpp.o"
+},
+{
+  "directory": "/home/superadmin/Desktop/DepthEstimationSubsystem/build/src/Subsystems/SubsystemManager",
+  "command": "/usr/bin/clang++ -DORT_NO_EXCEPTIONS -DSubsystemManager_EXPORTS -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/SubsystemManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Subsystem/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Logger/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/Inference/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/BitField/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/src/Utilities/TimerManager/include -I/home/superadmin/Desktop/DepthEstimationSubsystem/thirdParty/onnxruntime-linux-x64-1.30.0/include    -fno-exceptions   -Wno-deprecated    -g -std=gnu++20 -fPIC -o CMakeFiles/SubsystemManager.dir/src/SubsystemManager.cpp.o -c /home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/SubsystemManager/src/SubsystemManager.cpp",
+  "file": "/home/superadmin/Desktop/DepthEstimationSubsystem/src/Subsystems/SubsystemManager/src/SubsystemManager.cpp",
+  "output": "src/Subsystems/SubsystemManager/CMakeFiles/SubsystemManager.dir/src/SubsystemManager.cpp.o"
+}
+]

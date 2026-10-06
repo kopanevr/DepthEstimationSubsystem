@@ -1,0 +1,180 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "src",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5
+					],
+					"jsonFile" : "directory-src-Debug-c61fb49069c3d1aa76de.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "src/CommandInterpreter",
+					"jsonFile" : "directory-src.CommandInterpreter-Debug-384883907d20a39a97cb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/CommandInterpreter",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "src/Subsystems/Logger",
+					"jsonFile" : "directory-src.Subsystems.Logger-Debug-19440c248f6340319bed.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/Subsystems/Logger",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "src/Subsystems/Inference",
+					"jsonFile" : "directory-src.Subsystems.Inference-Debug-504f381302e59d8492ed.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/Subsystems/Inference",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/Subsystems/SubsystemManager",
+					"jsonFile" : "directory-src.Subsystems.SubsystemManager-Debug-13e49ef68f364333fe76.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/Subsystems/SubsystemManager",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"name" : "Application",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "Application::@145eef247bfb46b6828c",
+					"jsonFile" : "target-Application-Debug-6aacce728d825565732e.json",
+					"name" : "Application",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "CommandInterpreter::@1e192b00a2b3bd431c1c",
+					"jsonFile" : "target-CommandInterpreter-Debug-ead5001cb522eae1107a.json",
+					"name" : "CommandInterpreter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "Inference::@65e6028f604e9e39d249",
+					"jsonFile" : "target-Inference-Debug-55cba1ebc9b3b70dd16a.json",
+					"name" : "Inference",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "Logger::@0db4c50f3097b8bd6bdf",
+					"jsonFile" : "target-Logger-Debug-caba92ffabdf078b9c24.json",
+					"name" : "Logger",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "SubsystemManager::@91613cb50eff3fc15b56",
+					"jsonFile" : "target-SubsystemManager-Debug-19ea0a8108b23fa055db.json",
+					"name" : "SubsystemManager",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/superadmin/Desktop/DepthEstimationSubsystem/build",
+		"source" : "/home/superadmin/Desktop/DepthEstimationSubsystem"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
