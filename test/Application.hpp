@@ -17,9 +17,16 @@
 
 #include "ApplicationContext.hpp"
 
-#include "ApplicationBootstrapper.hpp"
+#include "ApplicationInitializer.hpp"
+#include "ApplicationDeinitializer.hpp"
 
 #include "ApplicationInfoPrinter.hpp"
+
+//
+
+// Подсистемы.
+
+#include "SubsystemManager.hpp"
 
 //
 
@@ -47,11 +54,15 @@ private:
 private:
   /// @brief
   static inline std::unique_ptr<Application> instance_;
-  /// @brief Контекст приложения.
-  std::unique_ptr<app::ApplicationContext> applicationContext_;
-  /// @brief Загрузчик.
-  std::unique_ptr<ApplicationBootstrapper> applicationBootstrapper_;
   /// @brief Принтер информации о модели.
   std::unique_ptr<ApplicationInfoPrinter> applicationInfoPrinter_;
+  /// @brief Инициализатор приложения.
+  std::unique_ptr<ApplicationInitializer> applicationInitializer_;
+  /// @brief Деинициализатор приложения.
+  std::unique_ptr<ApplicationDeinitializer> applicationDeinitializer_;
+  /// @brief Контекст приложения.
+  std::shared_ptr<app::ApplicationContext> applicationContext_;
+  /// @brief Менеджер подсистем.
+  std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager_;
 };
 } // namespace app

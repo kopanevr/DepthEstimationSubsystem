@@ -1,4 +1,4 @@
-#include "ApplicationBootstrapper.hpp"
+#include "ApplicationInitializer.hpp"
 
 //
 
@@ -20,7 +20,7 @@ using namespace app;
 /// @param argc Количество аргументов.
 /// @param argv Указатель на список аргументов.
 /// @return Состояние выполнения.
-int ApplicationBootstrapper::init(int argc, char *argv[]) {
+int ApplicationInitializer::init(int argc, char *argv[]) {
   if (!prepare(argc, argv)) {
     ERROR("Инициализация приложения не завершена.");
     return EXIT_FAILURE;
@@ -35,11 +35,11 @@ int ApplicationBootstrapper::init(int argc, char *argv[]) {
 /// @details
 /// @param argc Количество аргументов.
 /// @param argv Указатель на список аргументов.
-bool ApplicationBootstrapper::prepare(int argc, char *argv[]) {
+bool ApplicationInitializer::prepare(int argc, char *argv[]) {
   // Создание контекста приложения.
   applicationContext_.reset(new (std::nothrow) ApplicationContext());
   if (!applicationContext_) {
-    return;
+    return false;
   }
 
   // Создание интерпретатора команд.
@@ -63,20 +63,4 @@ bool ApplicationBootstrapper::prepare(int argc, char *argv[]) {
 
   // Запуск менеджера подсистем.
   return subsystemManager_->startUp();
-}
-
-
-/// @brief Деинициализация.
-/// @details Производит остановку менеджера подсистем.
-void ApplicationBootstrapper::deinit() {
-  if (applicationContext_->state == ApplicationContext::State::Ready ||
-      applicationContext_->state == ApplicationContext::State::Running) {
-    // Остановка менеджера подсистем.
-    subsystemManager_->shutDown();
-  }
-
-  cmd::CommandInterpreter::instance_ = nullptr;
-  subsystemManager::SubsystemManager::instance_ = nullptr;
-
-  applicationContext_->state = app::ApplicationContext::State::Deinitialized;
 }

@@ -12,10 +12,24 @@ using namespace app;
 
 using namespace cmd;
 
+/// @brief Конструктор.
+/// @param argc
+/// @param argv
 Application::Application(int argc, char *argv[]) {
-  // Создание загрузчика.
-  applicationBootstrapper_.reset(new (std::nothrow) ApplicationBootstrapper());
-  if (!applicationBootstrapper_) {
+  // Создание инициализатора приложения.
+  applicationInitializer_.reset(new (std::nothrow) ApplicationInitializer(subsystemManager_, subsystemManager_));
+  if (!applicationInitializer_) {
+    return;
+  }
+
+  // Создание деинициализатора приложения.
+  applicationDeinitializer_.reset(new (std::nothrow) ApplicationDeinitializer(subsystemManager_, subsystemManager_));
+  if (!applicationDeinitializer_) {
+    return;
+  }
+
+  // Инициализация.
+  if (applicationBootstrapper_->init(argc, argv)) {
     return;
   }
 
@@ -24,22 +38,13 @@ Application::Application(int argc, char *argv[]) {
   if (!applicationInfoPrinter_) {
     return;
   }
-
-  // Инициализация.
-  if (applicationBootstrapper_->init(argc, argv)) {
-    return;
-  }
 }
-
 
 /// @brief Деструктор.
 Application::~Application() {
-  if (!applicationBootstrapper_) {
-    return;
+  if (applicationDeinitializer_) {
+    applicationDeinitializer_->deinit();
   }
-
-  // Деинициализация.
-  applicationBootstrapper_->deinit();
 }
 
 /// @brief Выполнение.

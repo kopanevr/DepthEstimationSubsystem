@@ -24,7 +24,7 @@ using Duration = std::chrono::steady_clock::duration;
 //
 
 /// @brief Менеджер таймера.
-class TimerManager final {
+class [[deprecated]] TimerManager final {
 public:
   TimerManager() = default;
   ~TimerManager() = default;

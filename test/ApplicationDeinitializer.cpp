@@ -1,0 +1,26 @@
+#include "ApplicationDeinitializer.hpp"
+
+//
+
+#include "ApplicationContext.hpp"
+
+//
+
+#include "SubsystemManager.hpp"
+
+//
+
+/// @brief Деинициализация.
+/// @details Производит остановку менеджера подсистем.
+void ApplicationDeinitializer::deinit() {
+  if (applicationContext_->state == ApplicationContext::State::Ready ||
+      applicationContext_->state == ApplicationContext::State::Running) {
+    // Остановка менеджера подсистем.
+    subsystemManager_->shutDown();
+  }
+
+  cmd::CommandInterpreter::instance_ = nullptr;
+  subsystemManager::SubsystemManager::instance_ = nullptr;
+
+  applicationContext_->state = app::ApplicationContext::State::Deinitialized;
+}

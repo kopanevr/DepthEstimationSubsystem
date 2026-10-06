@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief
+ */
+
 #pragma once
 
 //
@@ -6,15 +11,19 @@
 
 //
 
-#include "ApplicationContext.hpp"
-
-//
-
 namespace app {
-class ApplicationBootstrapper final {
+class ApplicationInitializer final {
 public:
-  ApplicationBootstrapper() = default;
-  ~ApplicationBootstrapper() = default;
+  /// @brief Конструктор.
+  /// @param applicationContext
+  /// @param subsystemManager
+  ApplicationInitializer::ApplicationInitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
+                                                   const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
+      : applicationContext_(applicationContext),
+        subsystemManager_(subsystemManager) {}
+
+  /// @brief Деструктор.
+  ~ApplicationInitializer() = default;
 
   /// @brief Инициализация.
   /// @details
@@ -22,9 +31,6 @@ public:
   /// @param argv Указатель на список аргументов.
   /// @return Состояние выполнения.
   int init(int argc, char *argv[]);
-  /// @brief Деинициализация.
-  /// @details
-  void deinit();
 
 private:
   /// @brief Подготовка при инициализации.
@@ -34,11 +40,11 @@ private:
   bool prepare(int argc, char *argv[]);
 
 private:
-  /// @brief
-  std::unique_ptr<ApplicationContext> applicationContext_;
   /// @brief Интерпретатор команд.
   std::unique_ptr<cmd::CommandInterpreter> commandInterpreter_;
+  /// @brief Контекст приложения.
+  std::shared_ptr<app::ApplicationContext> applicationContext_;
   /// @brief Менеджер подсистем.
-  std::unique_ptr<subsystemManager::SubsystemManager> subsystemManager_;
+  std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager_;
 };
 } // namespace app
