@@ -1,9 +1,8 @@
 add_executable(Application Application.cpp main.cpp)
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/CommandInterpreter)
-add_subdirectory(${CMAKE_SOURCE_DIR}/Subsystems/Logger)
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/Subsystems/Inference)
-add_subdirectory(${CMAKE_SOURCE_DIR}/Subsystems/SubsystemManager)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SubsystemManager)
 
 target_include_directories(
   Application PRIVATE
