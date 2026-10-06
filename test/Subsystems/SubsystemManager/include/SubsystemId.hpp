@@ -11,7 +11,7 @@ namespace subsystemManager {
 enum class SubsystemId : int8_t {
   SubsystemManager = -1,
   Logger,
-  Inference,
+  DepthEstimator,
 
   Count
 };

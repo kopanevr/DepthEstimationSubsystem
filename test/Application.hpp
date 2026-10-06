@@ -23,22 +23,16 @@
 
 //
 
-// Подсистемы.
-
-#include "SubsystemManager.hpp"
-
-//
-
 namespace app {
 /// @brief Приложение.
 class Application final {
 public:
   /// @brief
-  static std::unique_ptr<Application> getInstance(int argc, char *argv[]) {
+  static Application *getInstance(int argc, char *argv[]) {
     if (!instance_) {
       instance_.reset(new (std::nothrow) Application(argc, argv));
     }
-    return instance_;
+    return instance_.get();
   }
 
   /// @brief Выполнение.

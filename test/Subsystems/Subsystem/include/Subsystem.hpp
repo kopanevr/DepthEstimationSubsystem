@@ -30,6 +30,7 @@
                 std::string{}.capacity());                                     \
   subsystemHandle_.name = subsystemName
 
+/// @brief Дескриптор подсистемы.
 struct SubsystemHandle {
   /// @brief Идентификатор подсистемы.
   subsystemManager::SubsystemId id;

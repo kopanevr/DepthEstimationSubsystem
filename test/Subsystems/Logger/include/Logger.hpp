@@ -43,16 +43,16 @@ public:
   /// @brief
   /// @param args Данные для вывода.
   template <typename... Args> void log(Args &&...args) const {
-    terminalPrinter_->print(std::forward<Args>(args)...);
+    if (!terminalPrinter_) {
+      terminalPrinter_->print(std::forward<Args>(args)...);
+    }
   }
 
 private:
   /// @brief Конструктор.
   Logger() {
     terminalPrinter_.reset(new (std::nothrow) TerminalPrinter());
-    if (!terminalPrinter_) {
-
-    }
+    if (!terminalPrinter_) {}
 
     // Инициализация.
     init();

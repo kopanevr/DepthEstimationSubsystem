@@ -39,7 +39,7 @@ namespace subsystemManager {
 
 namespace inference {
 /// @brief
-class Inference final : public Subsystem {
+class DepthEstimator final : public Subsystem {
 public:
   /// @brief Деструктор.
   ~Inference();
@@ -52,13 +52,13 @@ public:
 
 private:
   /// @brief Конструктор.
-  Inference() {
+  DepthEstimator() {
     // Инициализация.
     init();
   }
 
-  Inference &operator=(const Inference &) = delete;
-  Inference(const Inference &) = delete;
+  DepthEstimator &operator=(const DepthEstimator &) = delete;
+  DepthEstimator(const DepthEstimator &) = delete;
 
   /// @brief Дружественный класс.
   friend class subsystemManager::SubsystemManager;
@@ -124,20 +124,6 @@ private:
   std::unique_ptr<InferenceContext> inferenceContext_;
 };
 
-/// @brief Устанавливает путь к модели.
-inline bool Inference::setModelFilePath() {
-  if(!inferenceContext_) {
-    return false;
-  }
-
-  inferenceContext_->modelPath.modelDirectoryPath = inference::modelDirectoryPath;
-  inferenceContext_->modelPath.modelFileName = inference::modelFileName;
-
-  inferenceContext_->optimizedModelPath.modelDirectoryPath = inference::optimizedModelDirectoryPath;
-  inferenceContext_->optimizedModelPath.modelFileName = inference::optimizedModelFileName;
-
-  return true;
-}
 
 /// @brief Устанавливает размеры буферов для входного и выходного тензоров.
 [[deprecated]] inline void Inference::setRawBuffersSize() {

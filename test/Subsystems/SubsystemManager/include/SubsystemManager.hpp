@@ -27,7 +27,7 @@
 // Подсистемы.
 
 #include "Logger.hpp"
-#include "Inference.hpp"
+#include "DepthEstimator.hpp"
 
 //
 
@@ -62,11 +62,11 @@ public:
     }
 
     if (i < subsystemCount_) {
-      subsystems_[i].reset(new (std::nothrow) inference::Inference());
+      subsystems_[i].reset(new (std::nothrow) inference::DepthEstimator());
       if (!subsystems_[i]) {
         return false;
       }
-      inference::Inference::instance_ = static_cast<inference::Inference *>(subsystems_[i].get());
+      inference::Inference::instance_ = static_cast<inference::DepthEstimator *>(subsystems_[i].get());
       i++;
     } else {
       return false;
