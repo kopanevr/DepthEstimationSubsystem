@@ -32,12 +32,12 @@
 //
 
 namespace subsystemManager {
-  class SubsystemManager;
+class SubsystemManager;
 }
 
 //
 
-namespace inference {
+namespace depthEstimator {
 /// @brief
 class DepthEstimator final : public Subsystem {
 public:
@@ -65,111 +65,27 @@ private:
 
   /// @brief Инициализация подсистемы.
   void init() override {
-    SET_SUBSYSTEM_ID(subsystemManager::SubsystemId::Inference);
-    SET_SUBSYSTEM_NAME("Inference");
+    SET_SUBSYSTEM_ID(subsystemManager::SubsystemId::DepthEstimator);
+    SET_SUBSYSTEM_NAME("DepthEstimator");
   }
 
   /// @brief Предварительная настройка перед запуском подсистемы.
-  bool setBeforeStartUp() override;
+  bool setBeforeStartUp() override {}
   /// @brief Предварительная настройка перед остановкой подсистемы.
   void setBeforeShutDown() override {}
 
   /// @brief Тело процесса.
   void processBody() override;
 
-  /// @brief Конвейер.
-  void pipeline();
-
-  /// @brief
-  void run();
-
-  /// @brief
-  bool body();
-
-  /// @brief Подготовка входных тензоров.
-  bool prepareInputTensors();
-  /// @brief
-  bool inference();
-  /// @brief Подготовка выходных тензоров.
-  bool prepareOutputTensors();
-
-  /// @brief Устанавливает путь к модели.
-  [[deprecated]] bool setModelFilePath();
-
-  /// @brief
-  [[deprecated]] void setRawBuffersSize();
-
-  /// @brief Подготовка перед запуском вывода.
-  /// @param options Опции. Дополнительно смотреть @ref inference::prepareSettings.
-  bool prepareBeforeStartInference([[maybe_unused]] const uint8_t options = 0);
-  /// @brief Подготовка провайдера вывода.
-  /// @param options Опции. Дополнительно смотреть @ref inference::prepareSettings.
-  bool prepareProvider([[maybe_unused]] const uint8_t options = 0);
-  /// @brief Создание входных и выходных тензоров.
-  /// @param
-  bool createInputOutputTensors();
-  /// @brief Возвращает информацию о модели.
-  /// @param inferenceContext Контекст вывода.
-  /// @return Информация о модели.
-  [[nodiscard]] std::unique_ptr<ModelInfo> getModelInfo(InferenceContext &inferenceContext);
-
 private:
   /// @brief
-  static inline Inference *instance_;
+  static inline DepthEstimator *instance_;
 
   /// @brief
   std::thread inferenceThread_;
 
   /// @brief Контекст вывода.
   std::unique_ptr<InferenceContext> inferenceContext_;
+
 };
-
-
-/// @brief Устанавливает размеры буферов для входного и выходного тензоров.
-[[deprecated]] inline void Inference::setRawBuffersSize() {
-  auto resizeBuffer = [this](const std::unique_ptr<TensorInfo> &tensorInfo, std::unique_ptr<Tensor> &tensor) -> size_t {
-    const auto &shape = tensorInfo->shape;
-    if (shape->empty()) {
-      return {};
-    }
-
-    size_t totalElements = (size_t)1;
-
-    for (const auto &dim : *shape) {
-      if (dim < 0) {
-        ERROR("Пустая размерность тензора.");
-        return {};
-      }
-      totalElements *= static_cast<size_t>(dim);
-    }
-
-    const auto &inputTensorElementDataType = tensorInfo->tensorElementDataType;
-    size_t elementSize = sizeof(float);
-
-#warning "Дополнить реализацию."
-    if (inputTensorElementDataType == ONNXTensorElementDataType::ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT) {
-      elementSize = sizeof(float);
-    }
-
-    const size_t bufferSize = totalElements * elementSize;
-    tensor->rawData.resize(bufferSize);
-
-    return bufferSize;
-  };
-
-  INFO(
-    "Размер буфера входного тензора: ",
-    resizeBuffer(
-      inferenceContext_->modelInfo->inputTensorInfo,
-      inferenceContext_->inputTensor),
-    " [байт]."
-  );
-  INFO(
-    "Размер буфера выходного тензора: ",
-    resizeBuffer(
-      inferenceContext_->modelInfo->outputTensorInfo,
-      inferenceContext_->outputTensor),
-    " [байт]."
-  );
-}
-} // namespace inference
+} // namespace depthEstimator

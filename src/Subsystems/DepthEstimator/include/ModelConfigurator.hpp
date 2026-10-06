@@ -22,7 +22,7 @@ inline const char *optimizedModelFileName = "optimized_model.onnx";
 /// @brief
 class ModelConfigurator final {
 public:
-  explicit ModelConfigurator(std::unique_ptr<InferenceContext> &inferenceContext)
+  explicit ModelConfigurator(std::unique_ptr<InferenceContext> inferenceContext)
     : inferenceContext_(std::move(inferenceContext)) {}
 
   /// @brief Устанавливает путь к модели.

@@ -7,6 +7,11 @@
 
 //
 
+namespace app {
+class ApplicationContext;
+class subsystemManager::SubsystemManager;
+
+/// @brief
 class ApplicationDeinitializer final {
 public:
   /// @brief Конструктор.

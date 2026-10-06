@@ -6,11 +6,25 @@
 
 //
 
-using namespace app;
+#include "ApplicationContext.hpp"
+
+#include "ApplicationInitializer.hpp"
+#include "ApplicationDeinitializer.hpp"
+
+#include "ApplicationInfoPrinter.hpp"
 
 //
 
+// Подсистемы.
+
+#include "SubsystemManager.hpp"
+
+//
+
+using namespace app;
 using namespace cmd;
+
+//
 
 /// @brief Конструктор.
 /// @param argc
@@ -29,7 +43,7 @@ Application::Application(int argc, char *argv[]) {
   }
 
   // Инициализация.
-  if (applicationBootstrapper_->init(argc, argv)) {
+  if (applicationInitializer_->init(argc, argv)) {
     return;
   }
 
@@ -38,6 +52,9 @@ Application::Application(int argc, char *argv[]) {
   if (!applicationInfoPrinter_) {
     return;
   }
+
+  // Вывод информации о приложении.
+  applicationInfoPrinter_->printInfo();
 }
 
 /// @brief Деструктор.

@@ -12,13 +12,18 @@
 //
 
 namespace app {
+class CommandInterpreter;
+class ApplicationContext;
+class subsystemManager::SubsystemManager;
+
+/// @brief
 class ApplicationInitializer final {
 public:
   /// @brief Конструктор.
   /// @param applicationContext
   /// @param subsystemManager
   ApplicationInitializer::ApplicationInitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
-                                                   const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
+                                                 const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
       : applicationContext_(applicationContext),
         subsystemManager_(subsystemManager) {}
 
@@ -28,7 +33,7 @@ public:
   /// @brief Инициализация.
   /// @details
   /// @param argc Количество аргументов.
-  /// @param argv Указатель на список аргументов.
+  /// @param argv Список аргументов.
   /// @return Состояние выполнения.
   int init(int argc, char *argv[]);
 

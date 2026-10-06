@@ -15,22 +15,13 @@
 
 //
 
-#include "ApplicationContext.hpp"
-
-#include "ApplicationInitializer.hpp"
-#include "ApplicationDeinitializer.hpp"
-
-#include "ApplicationInfoPrinter.hpp"
-
-//
-
-// Подсистемы.
-
-#include "SubsystemManager.hpp"
-
-//
-
 namespace app {
+class ApplicationInfoPrinter;
+class ApplicationInitializer;
+class ApplicationDeinitializer;
+class ApplicationContext;
+class subsystemManager::SubsystemManager;
+
 /// @brief Приложение.
 class Application final {
 public:

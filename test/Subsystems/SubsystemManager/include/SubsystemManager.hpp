@@ -62,11 +62,11 @@ public:
     }
 
     if (i < subsystemCount_) {
-      subsystems_[i].reset(new (std::nothrow) inference::DepthEstimator());
+      subsystems_[i].reset(new (std::nothrow) depthEstimator::DepthEstimator());
       if (!subsystems_[i]) {
         return false;
       }
-      inference::Inference::instance_ = static_cast<inference::DepthEstimator *>(subsystems_[i].get());
+      depthEstimator::DepthEstimator::instance_ = static_cast<depthEstimator::DepthEstimator *>(subsystems_[i].get());
       i++;
     } else {
       return false;

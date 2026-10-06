@@ -1,3 +1,7 @@
+#include "InferencePreparator.hpp"
+
+//
+
 namespace inference {
 namespace prepareSettings {
 /*
@@ -110,33 +114,9 @@ bool InferencePreparer::prepareBeforeStartInference(const uint8_t options) {
   return true;
 }
 
-/// @brief Подготовка провайдера вывода.
-/// @warning
-/// @param options Опции.
-bool Inference::prepareProvider(const uint8_t options) {
-  DEBUG("Подготовка провайдера вывода.");
-
-  OrtROCMProviderOptions ROCMProviderOptions{};
-
-  std::memset(
-    &ROCMProviderOptions,
-    0,
-    sizeof(ROCMProviderOptions)
-  );
-
-  /*
-  ROCMProviderOptions.device_id = 0;
-  */
-
-  inferenceContext_->sessionOptions->AppendExecutionProvider_ROCM(ROCMProviderOptions);
-
-  DEBUG("Подготовка провайдера вывода завершена.");
-  return true;
-}
-
 /// @brief Создание входных и выходных тензоров.
 /// @param
-bool Inference::createInputOutputTensors() {
+bool InferencePreparer::createInputOutputTensors() {
   // Получение информации о модели.
   inferenceContext_->modelInfo = getModelInfo(*inferenceContext_);
   if (!inferenceContext_->modelInfo) {
@@ -209,7 +189,7 @@ bool Inference::createInputOutputTensors() {
 /// @brief Возвращает информацию о модели.
 /// @param inferenceContext Контекст вывода.
 /// @return Информация о модели.
-std::unique_ptr<ModelInfo> Inference::getModelInfo(InferenceContext &inferenceContext) {
+std::unique_ptr<ModelInfo> InferencePreparer::getModelInfo(InferenceContext &inferenceContext) {
   // Создание информации о модели
   auto modelInfo = std::unique_ptr<ModelInfo>(new (std::nothrow) ModelInfo());
   if (!modelInfo) {
@@ -309,3 +289,51 @@ std::unique_ptr<ModelInfo> Inference::getModelInfo(InferenceContext &inferenceCo
 }
 
 #undef PRINT_TENSOR_SHAPE
+
+/// @brief Устанавливает размеры буферов для входного и выходного тензоров.
+[[deprecated]] void InferencePreparer::setRawBuffersSize() {
+  auto resizeBuffer = [this](const std::unique_ptr<TensorInfo> &tensorInfo, std::unique_ptr<Tensor> &tensor) -> size_t {
+    const auto &shape = tensorInfo->shape;
+    if (shape->empty()) {
+      return {};
+    }
+
+    size_t totalElements = (size_t)1;
+
+    for (const auto &dim : *shape) {
+      if (dim < 0) {
+        ERROR("Пустая размерность тензора.");
+        return {};
+      }
+      totalElements *= static_cast<size_t>(dim);
+    }
+
+    const auto &inputTensorElementDataType = tensorInfo->tensorElementDataType;
+    size_t elementSize = sizeof(float);
+
+#warning "Дополнить реализацию."
+    if (inputTensorElementDataType == ONNXTensorElementDataType::ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT) {
+      elementSize = sizeof(float);
+    }
+
+    const size_t bufferSize = totalElements * elementSize;
+    tensor->rawData.resize(bufferSize);
+
+    return bufferSize;
+  };
+
+  INFO(
+    "Размер буфера входного тензора: ",
+    resizeBuffer(
+      inferenceContext_->modelInfo->inputTensorInfo,
+      inferenceContext_->inputTensor),
+    " [байт]."
+  );
+  INFO(
+    "Размер буфера выходного тензора: ",
+    resizeBuffer(
+      inferenceContext_->modelInfo->outputTensorInfo,
+      inferenceContext_->outputTensor),
+    " [байт]."
+  );
+}
