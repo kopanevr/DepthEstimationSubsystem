@@ -1,2 +1,0 @@
-/usr/bin/ar qc libCommandInterpreter.a CMakeFiles/CommandInterpreter.dir/src/CommandInterpreter.cpp.o
-/usr/bin/ranlib libCommandInterpreter.a

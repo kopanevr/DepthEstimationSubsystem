@@ -1,1 +1,0 @@
-/usr/bin/clang++ -fPIC    -fno-exceptions   -Wno-deprecated    -g -shared -Xlinker --dependency-file=CMakeFiles/Logger.dir/link.d -Wl,-soname,libLogger.so -o libLogger.so CMakeFiles/Logger.dir/src/Logger.cpp.o
