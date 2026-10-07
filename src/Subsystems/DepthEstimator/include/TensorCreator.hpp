@@ -43,14 +43,17 @@ protected:
 /// @param tensor
 /// @return
 inline std::size_t TensorCreator::resizeRawBuffer(const std::unique_ptr<TensorInfo> &tensorInfo, std::unique_ptr<Tensor> &tensor) {
-  const auto &shape = tensorInfo->shape;
-  if (shape->empty()) {
+  if (!tensorInfo || !tensor) {
+    return {};
+  }
+
+  if (tensorInfo->shape->empty()) {
     return {};
   }
 
   size_t totalElements = (size_t)1;
 
-  for (const auto &dim : *shape) {
+  for (const auto &dim : *tensorInfo->shape) {
     if (dim < 0) {
       ERROR("Пустая размерность тензора.");
       return {};

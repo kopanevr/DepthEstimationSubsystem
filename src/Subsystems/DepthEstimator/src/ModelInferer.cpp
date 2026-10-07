@@ -14,38 +14,22 @@ using namespace depthEstimator::modelInferer;
 
 //
 
+/// @brief
 void ModelInferer::infer() {
-  modelInferencePreparer_.reset(new (std::nothrow) ModelInferencePreparer(modelInferenceContext_));
-  if (!modelInferencePreparer_) {
-    return;
-  }
-
-  // Подготовка вывода.
-  modelInferenceContext_ = modelInferencePreparer_->prepare();
   if (!modelInferenceContext_) {
+    modelInferencePreparer_.reset(new (std::nothrow) ModelInferencePreparer(modelInferenceContext_));
+    if (!modelInferencePreparer_) {
+      return;
+    }
 
-    return;
-  }
-}
-
-/// @brief Тело процесса.
-/// @details
-void Inference::processBody() {
-  STATIC_BIT_FIELD(0, 1, FLAG(isStarted)); // Статическое битовое поле.
-
-  if (!GET_FLAG_STATE(0, isStarted)) {
-    // Выполнение при первом запуске.
-
-    inferenceThread_ = std::thread(&Inference::run, this);
-    SET_FLAG(0, isStarted);
-  } else {
-    // Выполнение при последующих запусках.
-
-    if (false) {
-      // Стирание битового поля.
-      ERASE_BIT_FIELD(0);
+    // Подготовка вывода.
+    modelInferenceContext_ = modelInferencePreparer_->prepare();
+    if (!modelInferenceContext_) {
+      return;
     }
   }
+
+
 }
 
 
@@ -74,13 +58,6 @@ bool Inference::body() {
   return true;
 }
 
-#define PROCESS(process)                                                       \
-  if (!process()) {                                                            \
-    SET_FLAG(0, isErrorAppeared);                                              \
-    break;                                                                     \
-  }                                                                            \
-  step++;
-
 /// @brief Конвейер.
 void Inference::pipeline() {
   STATIC_BIT_FIELD(0, 1, FLAG(isErrorAppeared)); // Статическое битовое поле.
@@ -98,13 +75,6 @@ void Inference::pipeline() {
   default:
     break;
   }
-}
-
-#undef PROCESS
-
-/// @brief Подготовка входных тензоров.
-bool Inference::prepareInputTensors() {
-  return true;
 }
 
 /// @brief

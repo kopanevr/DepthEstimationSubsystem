@@ -20,3 +20,8 @@ bool DepthEstimator::setBeforeStartUp() {
 
   return true;
 }
+
+/// @brief Тело процесса.
+void DepthEstimator::processBody() {
+
+}

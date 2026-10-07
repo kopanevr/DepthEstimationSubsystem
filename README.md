@@ -24,42 +24,23 @@ class Subsystem {
 public:
   /// @brief Конструктор.
   Subsystem() = default;
-
   /// @brief Деструктор.
   virtual ~Subsystem() = default;
 
   /// @brief Запуск подсистемы.
-  bool startUp() {
-    if (subsystemHandle_.isStarted) {
-      return false;
-    }
-    if (!setBeforeStartUp()) {
-      return false;
-    }
-    subsystemHandle_.isStarted = true;
-    return true;
-  }
-
+  bool startUp() {}
   /// @brief Остановка подсистемы.
-  void shutDown() {
-    if (!subsystemHandle_.isStarted) {
-      return;
-    }
-    setBeforeShutDown();
-    subsystemHandle_.isStarted = false;
-  }
+  void shutDown() {}
 
   /// @brief Возвращает идентификатор подсистемы.
-  [[nodiscard]] subsystemManager::SubsystemId getId() const {
-    return subsystemHandle_.id;
-  }
+  [[nodiscard]] subsystemManager::SubsystemId getId() const {}
 
   /// @brief Проверка запуска подсистемы.
-  [[nodiscard]] bool isRunning() const { return subsystemHandle_.isStarted; }
+  [[nodiscard]] bool isRunning() const {}
 
   /// @brief Основной процесс.
   /// @details Вызывается в главном потоке.
-  void process() { processBody(); }
+  void process() {}
 
 protected:
   /// @brief Дескриптор подсистемы.
