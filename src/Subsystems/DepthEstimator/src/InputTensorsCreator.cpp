@@ -2,9 +2,13 @@
 
 //
 
-/// @brief Создание входных и выходных тензоров.
+#include "ModelInferenceContext.hpp"
+
+//
+
+/// @brief Создание входных тензоров.
 /// @param
-bool InferencePreparer::createInputTensors() {
+std::unique_ptr<ModelInferenceContext> InputTensorsCreator::create() {
   // Получение информации о модели.
   inferenceContext_->modelInfo = getModelInfo(*inferenceContext_);
   if (!inferenceContext_->modelInfo) {

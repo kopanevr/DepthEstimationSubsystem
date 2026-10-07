@@ -12,6 +12,8 @@
 
 #include "ModelInferenceSessionCreator.hpp"
 
+#include "InputOutputTensorsCreator.hpp"
+
 //
 
 // Подсистемы
@@ -23,11 +25,6 @@
 using namespace depthEstimator::modelInferer;
 
 //
-
-/// @brief Конструктор.
-/// @param inferenceContext Контекст вывода.
-ModelInferencePreparer::ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> &inferenceContext)
-    : inferenceContext_(std::move(inferenceContext)) {}
 
 /// @brief Подготовка перед запуском вывода.
 /// @param options Опции. Дополнительно смотреть @ref prepareOptions.
@@ -98,14 +95,17 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
     return {};
   }
 
-  // Создание входных и выходных тензоров.
-  if (!createInputOutputTensors()) {
-    ERROR("Ошибка при создании входного и выходного тензоров.");
-    inferenceContext_.reset();
-    return false;
+  inputOutputTensorCreator_.reset(new (std::nothrow) InputOutputTensorsCreator(localContext));
+  if (!inputOutputTensorCreator_) {
+    return {};
   }
 
-  INFO("Входной и выходной тензоры созданы.");
+  // Создание входных и выходных тензоров.
+  localContext = inputOutputTensorCreator_->create();
+  if (!localContext) {
+    ERROR("");
+    return {};
+  }
 
-  return true;
+  return std::move(localContext);
 }

@@ -22,7 +22,7 @@ inline constexpr char *optimizedModelFileName = "optimized_model.onnx";
 class ModelsPathSetter final {
 public:
   /// @brief Конструктор.
-  /// @param modelinferenceContext
+  /// @param modelInferenceContext
   explicit ModelsPathSetter(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
     : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
