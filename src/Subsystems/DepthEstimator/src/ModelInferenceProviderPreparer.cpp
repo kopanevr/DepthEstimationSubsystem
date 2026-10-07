@@ -2,7 +2,7 @@
 
 //
 
-#include "InferenceContext.hpp"
+#include "ModelInferenceContext.hpp"
 
 //
 
@@ -21,7 +21,7 @@ using namespace depthEstimator::modelInferer;
 //
 
 /// @brief По
-std::unique_ptr<InferenceContext> ModelInferenceProviderPreparer::prepare() {
+std::unique_ptr<ModelInferenceContext> ModelInferenceProviderPreparer::prepare() {
   DEBUG("Подготовка провайдера вывода.");
 
   OrtCUDAProviderOptionsV2 *CUDAProviderOptionsV2;
@@ -29,9 +29,9 @@ std::unique_ptr<InferenceContext> ModelInferenceProviderPreparer::prepare() {
   /*
    */
 
-  inferenceContext_->sessionOptions->AppendExecutionProvider_CUDA_V2(*CUDAProviderOptionsV2);
+  modelInferenceContext_->sessionOptions->AppendExecutionProvider_CUDA_V2(*CUDAProviderOptionsV2);
 
   DEBUG("Подготовка провайдера вывода завершена.");
 
-  return std::move(inferenceContext_);
+  return std::move(modelInferenceContext_);
 }

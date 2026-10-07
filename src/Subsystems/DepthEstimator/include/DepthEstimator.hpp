@@ -7,27 +7,11 @@
 
 //
 
-#include <thread>
 #include <memory>
 
 //
 
-
-#include "InferenceContext.hpp"
-
-//
-
 #include "Subsystem.hpp"
-
-//
-
-// Подсистемы.
-
-#include "Logger.hpp"
-
-//
-
-#include "onnxruntime_cxx_api.h"
 
 //
 
@@ -38,15 +22,17 @@ class SubsystemManager;
 //
 
 namespace depthEstimator {
+class modelInferer::ModelInferer;
+
 /// @brief
 class DepthEstimator final : public Subsystem {
 public:
   /// @brief Деструктор.
-  ~Inference();
+  ~DepthEstimator() = default;
 
   /// @brief
   /// @return
-  static Inference *getInstance() {
+  static DepthEstimator *getInstance() {
     return instance_;
   }
 
@@ -56,6 +42,7 @@ private:
     // Инициализация.
     init();
   }
+
 
   DepthEstimator &operator=(const DepthEstimator &) = delete;
   DepthEstimator(const DepthEstimator &) = delete;
@@ -70,7 +57,7 @@ private:
   }
 
   /// @brief Предварительная настройка перед запуском подсистемы.
-  bool setBeforeStartUp() override {}
+  bool setBeforeStartUp() override;
   /// @brief Предварительная настройка перед остановкой подсистемы.
   void setBeforeShutDown() override {}
 
@@ -82,10 +69,7 @@ private:
   static inline DepthEstimator *instance_;
 
   /// @brief
-  std::thread inferenceThread_;
-
-  /// @brief Контекст вывода.
-  std::unique_ptr<InferenceContext> inferenceContext_;
+  std::unique_ptr<modelInferer::ModelInferer> modelInferer_;
 
 };
 } // namespace depthEstimator

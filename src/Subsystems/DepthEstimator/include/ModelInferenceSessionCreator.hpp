@@ -10,19 +10,18 @@ namespace depthEstimator {
 namespace modelInferer {
 class ModelInferenceContext;
 
-/// @brief
-class ModelInferenceProviderPreparer final {
+class ModelInferenceSessionCreator final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext
-  explicit ModelInferenceProviderPreparer(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
+  explicit ModelInferenceSessionCreator(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
       : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
   /// @brief Деструктор.
-  ~ModelInferenceProviderPreparer() = default;
+  ~ModelInferenceSessionCreator() = default;
 
   /// @brief
-  [[nodiscard]] std::unique_ptr<ModelInferenceContext> prepare();
+  [[nodiscard]] std::unique_ptr<ModelInferenceContext> create();
 
 private:
   /// @brief

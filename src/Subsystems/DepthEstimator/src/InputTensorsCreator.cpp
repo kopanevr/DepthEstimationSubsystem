@@ -1,4 +1,6 @@
+#include "InputTensorsCreator.hpp"
 
+//
 
 /// @brief Создание входных и выходных тензоров.
 /// @param

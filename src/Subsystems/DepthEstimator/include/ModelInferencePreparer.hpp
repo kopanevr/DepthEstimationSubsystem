@@ -9,40 +9,46 @@
 #include <memory>
 
 //
+
 namespace depthEstimator {
 namespace modelInferer {
+namespace prepareOptions {
+/*
+inline constexpr uint8_t option = 1 << 0;
+*/
+} // namespace prepareOptions
+
+class ModelInferenceContext;
 class ModelInferenceProviderPreparer;
+class ModelsPathSetter;
+class ModelInferenceSessionCreator;
 
 /// @brief
 class ModelInferencePreparer final {
 public:
-  ModelInferencePreparer();
+  /// @brief Конструктор.
+  /// @param inferenceContext Контекст вывода.
+  ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> &inferenceContext);
 
+  /// @brief Деструктор.
   ~ModelInferencePreparer() = default;
 
   /// @brief Подготовка перед запуском вывода.
-  /// @param options Опции. Дополнительно смотреть @ref
-  /// inference::prepareSettings.
-  bool prepare([[maybe_unused]] const uint8_t options = 0);
+  /// @param options Опции. Дополнительно смотреть @ref prepareOptions.
+  std::unique_ptr<ModelInferenceContext> prepare([[maybe_unused]] const uint8_t options = 0);
 
 private:
-  /// @brief Подготовка входных тензоров.
-  bool prepareInputTensors();
-  /// @brief Подготовка выходных тензоров.
-  bool prepareOutputTensors();
-
-  /// @brief Создание входных и выходных тензоров.
-  /// @param
-  bool createInputOutputTensors();
-
-  /// @brief Возвращает информацию о модели.
-  /// @param inferenceContext Контекст вывода.
-  /// @return Информация о модели.
-  std::unique_ptr<ModelInfo> getModelInfo(InferenceContext &inferenceContext);
-private:
+  /// @brief Контекст вывода.
+  std::unique_ptr<ModelInferenceContext> inferenceContext_;
 
   /// @brief Подготовитель провайдера вывода.
   std::unique_ptr<ModelInferenceProviderPreparer> modelInferenceProviderPreparer_;
+
+  /// @brief Установщик пути к моделям.
+  std::unique_ptr<ModelsPathSetter> modelsPathSetter;
+
+    /// @brief
+  std::unique_ptr<ModelInferenceSessionCreator> modelInferenceSessionCreator_;
 
 };
 } // namespace modelInferer
