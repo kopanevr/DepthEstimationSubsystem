@@ -6,34 +6,41 @@
 
 //
 
+using namespace depthEstimator::modelInferer;
+
+//
+
 /// @brief Создание входных тензоров.
 /// @param
 std::unique_ptr<ModelInferenceContext> InputTensorsCreator::create() {
-  // Получение информации о модели.
-  inferenceContext_->modelInfo = getModelInfo(*inferenceContext_);
-  if (!inferenceContext_->modelInfo) {
-    ERROR("Ошибка при получении информации о модели.");
-    return false;
+  if (!inferenceContext_) {
+    return {};
   }
-
-  Ort::MemoryInfo memoryInfo = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
 
   inferenceContext_->inputTensor.reset(new (std::nothrow) Tensor());
   if (!inferenceContext_->inputTensor) {
-    return false;
+    return {};
   }
 
   inferenceContext_->outputTensor.reset(new (std::nothrow) Tensor());
     if (!inferenceContext_->outputTensor) {
-    return false;
+    return {};
   }
 
-  // Установка размера буферов для входного и выходного тензоров.
-  setRawBuffersSize();
+  // Установка размера буфера.
+  INFO(
+    "Размер буфера входного тензора: ",
+    resizeBuffer(
+      inferenceContext_->modelInfo->inputTensorInfo,
+      inferenceContext_->inputTensor),
+    " [байт]."
+  );
 
   const auto &inputTensor = inferenceContext_->inputTensor;
 
   inputTensor->metaData.shape = inferenceContext_->modelInfo->inputTensorInfo->shape;
+
+  Ort::MemoryInfo memoryInfo = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
 
   // Создание входного тензора.
   auto value = Ort::Value::CreateTensor(
@@ -50,30 +57,8 @@ std::unique_ptr<ModelInferenceContext> InputTensorsCreator::create() {
   auto &inputTensorValue = inferenceContext_->inputTensorValues.at(0);
   inputTensorValue.reset(new (std::nothrow) Ort::Value(std::move(value)));
   if (!inputTensorValue) {
-    return false;
+    return {};
   }
 
-  const auto &outputTensor = inferenceContext_->outputTensor;
-
-  outputTensor->metaData.shape = inferenceContext_->modelInfo->outputTensorInfo->shape;
-
-  // Создание выходного тензора.
-  value = Ort::Value::CreateTensor(
-    memoryInfo,
-    static_cast<void *>(outputTensor->rawData.data()),
-    outputTensor->rawData.size(),
-    outputTensor->metaData.shape->data(), // Указатель на размерность тензора.
-    outputTensor->metaData.shape->size(), //
-    inferenceContext_->modelInfo->outputTensorInfo->tensorElementDataType
-  );
-
-  inferenceContext_->outputTensorValues.push_back({});
-
-  auto &outputTensorValue = inferenceContext_->outputTensorValues.at(0);
-  outputTensorValue.reset(new (std::nothrow) Ort::Value(std::move(value)));
-  if (!outputTensorValue) {
-    return false;
-  }
-
-  return true;
+  return std::move(inferenceContext_);
 }

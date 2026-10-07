@@ -1,8 +1,19 @@
-#include "InputOutputTensorsCreator.hpp"
+#include "ModelInferenceInfoGetter.hpp"
 
 //
 
 #include "ModelInferenceContext.hpp"
+
+//
+
+// Подсистемы
+
+
+#include "Logger.hpp"
+
+//
+
+#include "onnxruntime_cxx_api.h"
 
 //
 
@@ -12,30 +23,34 @@ using namespace depthEstimator::modelInferer;
 
 /// @brief Возвращает информацию о модели.
 /// @return
-std::unique_ptr<ModelInfo> ModelInferenceInfoGetter::get() {
+std::unique_ptr<ModelInferenceContext> ModelInferenceInfoGetter::get() {
+  if (!modelInferenceContext_) {
+    return {};
+  }
+
   // Создание информации о модели
   auto modelInfo = std::unique_ptr<ModelInfo>(new (std::nothrow) ModelInfo());
   if (!modelInfo) {
-    return nullptr;
+    return {};
   }
 
   // Аллокатор.
   Ort::AllocatorWithDefaultOptions allocator{};
 
   // Получение имени входа.
-  auto inputNameAllocated = inferenceContext.session->GetInputNameAllocated(0, allocator);
+  auto inputNameAllocated = modelInferenceContext_->session->GetInputNameAllocated(0, allocator);
   if (!inputNameAllocated) {
-    return nullptr;
+    return {};
   }
-  inferenceContext.inputTensorNames.push_back(inputNameAllocated.get());
+  modelInferenceContext_->inputTensorNames.push_back(inputNameAllocated.get());
 
   modelInfo->inputTensorInfo.reset(new (std::nothrow) TensorInfo());
   if (!modelInfo->inputTensorInfo) {
-    return nullptr;
+    return {};
   }
 
   // Получение информации о типе входа.
-  auto typeInfo = inferenceContext.session->GetInputTypeInfo(0);
+  auto typeInfo = modelInferenceContext_->session->GetInputTypeInfo(0);
   auto tensorTypeAndShapeInfo = typeInfo.GetTensorTypeAndShapeInfo();
 
   // Получение типа данных элементов входа.
@@ -43,7 +58,7 @@ std::unique_ptr<ModelInfo> ModelInferenceInfoGetter::get() {
   // Получение размерности.
   modelInfo->inputTensorInfo->shape = std::make_shared<std::vector<int64_t>>(tensorTypeAndShapeInfo.GetShape());
   if (!modelInfo->inputTensorInfo->shape) {
-    return nullptr;
+    return {};
   }
 
   // Выводит размерность тензора.
@@ -77,19 +92,19 @@ std::unique_ptr<ModelInfo> ModelInferenceInfoGetter::get() {
 #endif
 
   // Получение имени входа.
-  auto outputNameAllocated = inferenceContext.session->GetOutputNameAllocated(0, allocator);
+  auto outputNameAllocated = modelInferenceContext_->session->GetOutputNameAllocated(0, allocator);
   if (!outputNameAllocated) {
     return nullptr;
   }
-  inferenceContext.outputTensorNames.push_back(outputNameAllocated.get());
+  modelInferenceContext_->outputTensorNames.push_back(outputNameAllocated.get());
 
   modelInfo->outputTensorInfo.reset(new (std::nothrow) TensorInfo());
   if (!modelInfo->outputTensorInfo) {
-    return nullptr;
+    return {};
   }
 
   // Получение информации о типе выхода.
-  typeInfo = inferenceContext.session->GetOutputTypeInfo(0);
+  typeInfo = modelInferenceContext_->session->GetOutputTypeInfo(0);
   tensorTypeAndShapeInfo = typeInfo.GetTensorTypeAndShapeInfo();
 
   // Получение типа данных элементов выхода.
@@ -97,7 +112,7 @@ std::unique_ptr<ModelInfo> ModelInferenceInfoGetter::get() {
   // Получение размерности.
   modelInfo->outputTensorInfo->shape = std::make_shared<std::vector<int64_t>>(tensorTypeAndShapeInfo.GetShape());
   if (!modelInfo->outputTensorInfo->shape) {
-    return nullptr;
+    return {};
   }
 
 #if (USER_OPTION_SHOW_MODEL_INFO == 1)
@@ -108,5 +123,7 @@ std::unique_ptr<ModelInfo> ModelInferenceInfoGetter::get() {
   LOG("Тип элементов: ", getTensorElementType(modelInfo->outputTensorInfo->tensorElementDataType));
 #endif
 
-  return modelInfo;
+  modelInferenceContext_->modelInfo = std::move(modelInfo);
+
+  return std::move(modelInferenceContext_);
 }

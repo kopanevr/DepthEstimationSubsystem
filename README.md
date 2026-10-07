@@ -2,7 +2,8 @@
 
 **C++ подсистема для инференса модели оценки глубины YOLO26-depth с использованием ONNX Runtime.**
 
-## Зависимости (Dependencies)
+## Зависимости
+
 Для сборки и запуска проекта вам понадобятся:
 
 * **Компилятор C++:** Поддержка стандарта C++20 или выше.
@@ -14,6 +15,71 @@
 | :--: | :--: |
 | **** | **** |
 | ![1](/doc/images/model.onnx.png) | ![2](/doc/images/.png) |
+
+##
+
+```cpp
+/// @brief Подсистема.
+class Subsystem {
+public:
+  /// @brief Конструктор.
+  Subsystem() = default;
+
+  /// @brief Деструктор.
+  virtual ~Subsystem() = default;
+
+  /// @brief Запуск подсистемы.
+  bool startUp() {
+    if (subsystemHandle_.isStarted) {
+      return false;
+    }
+    if (!setBeforeStartUp()) {
+      return false;
+    }
+    subsystemHandle_.isStarted = true;
+    return true;
+  }
+
+  /// @brief Остановка подсистемы.
+  void shutDown() {
+    if (!subsystemHandle_.isStarted) {
+      return;
+    }
+    setBeforeShutDown();
+    subsystemHandle_.isStarted = false;
+  }
+
+  /// @brief Возвращает идентификатор подсистемы.
+  [[nodiscard]] subsystemManager::SubsystemId getId() const {
+    return subsystemHandle_.id;
+  }
+
+  /// @brief Проверка запуска подсистемы.
+  [[nodiscard]] bool isRunning() const { return subsystemHandle_.isStarted; }
+
+  /// @brief Основной процесс.
+  /// @details Вызывается в главном потоке.
+  void process() { processBody(); }
+
+protected:
+  /// @brief Дескриптор подсистемы.
+  SubsystemHandle subsystemHandle_;
+
+protected:
+  /// @brief Инициализация подсистемы.
+  virtual void init() = 0;
+  /// @brief
+  virtual bool setBeforeStartUp() = 0;
+  /// @brief
+  virtual void setBeforeShutDown() = 0;
+  /// @brief Тело основного цикла.
+  /// @details Вызывается в @ref process.
+  virtual void processBody() = 0;
+
+private:
+
+};
+```
 
 ## Лицензия
 

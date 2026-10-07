@@ -7,6 +7,8 @@
 #include "InputTensorsCreator.hpp"
 #include "OutputTensorsCreator.hpp"
 
+#include "ModelInferenceInfoGetter.hpp"
+
 //
 
 using namespace depthEstimator::modelInferer;
@@ -16,26 +18,35 @@ using namespace depthEstimator::modelInferer;
 /// @brief
 /// @return
 std::unique_ptr<ModelInferenceContext> InputOutputTensorsCreator::create() {
+  modelInferenceInfoGetter_.reset(new (std::nothrow) ModelInferenceInfoGetter(modelInferenceContext_));
+  if (!modelInferenceInfoGetter_) {
+    return {};
+  }
+
+  // Получение информации о модели.
+  modelInferenceContext_ = modelInferenceInfoGetter_->get();
+  if (!modelInferenceContext_) {
+    return {};
+  }
+
   inputTensorsCreator_.reset(new (std::nothrow) InputTensorsCreator(modelInferenceContext_));
   if (!inputTensorsCreator_) {
     return {};
   }
 
-  if
-
   // Создание входных тензоров.
-  modelInferenceContext_ = inputTensorsCreator_.create();
+  modelInferenceContext_ = inputTensorsCreator_->create();
   if (!modelInferenceContext_) {
     return {};
   }
 
-  outputTensorsCreator_.reset(new (std::nothrow) OutputTensorCreator(modelInferenceContext_));
+  outputTensorsCreator_.reset(new (std::nothrow) OutputTensorsCreator(modelInferenceContext_));
   if (!outputTensorsCreator_) {
     return {};
   }
 
   // Создание выходных тензоров.
-  modelInferenceContext_ = outputTensorsCreator_.create();
+  modelInferenceContext_ = outputTensorsCreator_->create();
   if (!modelInferenceContext_) {
     return {};
   }

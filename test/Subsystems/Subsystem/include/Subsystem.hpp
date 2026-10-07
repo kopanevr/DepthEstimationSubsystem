@@ -100,4 +100,5 @@ protected:
   virtual void processBody() = 0;
 
 private:
+
 };

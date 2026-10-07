@@ -40,6 +40,9 @@ public:
   std::unique_ptr<ModelInferenceContext> prepare([[maybe_unused]] const uint8_t options = 0);
 
 private:
+  /// @brief Контекст вывода.
+  std::unique_ptr<ModelInferenceContext> modelInferenceContext;
+
   /// @brief Подготовитель провайдера вывода.
   std::unique_ptr<ModelInferenceProviderPreparer> modelInferenceProviderPreparer_;
 

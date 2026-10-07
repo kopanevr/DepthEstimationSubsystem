@@ -11,6 +11,7 @@ namespace modelInferer {
 class ModelInferenceContext;
 class InputTensorsCreator;
 class OutputTensorsCreator;
+class ModelInferenceInfoGetter;
 
 /// @brief
 class InputOutputTensorsCreator final {
@@ -34,6 +35,8 @@ private:
   std::unique_ptr<InputTensorsCreator> inputTensorsCreator_;
   /// @brief
   std::unique_ptr<OutputTensorsCreator> outputTensorsCreator_;
+  /// @brief
+  std::unique_ptr<ModelInferenceInfoGetter> modelInferenceInfoGetter_;
 };
 } // namespace modelInferer
 } // namespace depthEstimator
