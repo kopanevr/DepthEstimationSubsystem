@@ -7,16 +7,22 @@
 //
 
 namespace depthEstimator {
-namespace ModelInferer {
+namespace modelInferer {
+class ModelInferenceContext;
 class ModelInferencePreparer;
 
 /// @brief
 class ModelInferer final {
 public:
-private:
-  /// @brief Подготовитель вывода.
-  std::unique_ptr <ModelInferencePreparer> ModelInferencePreparer;
+  ModelInferer();
+  ~ModelInferer();
 
+private:
+  /// @brief Контекст вывода.
+  std::unique_ptr<ModelInferenceContext> modelInferenceContext_;
+
+  /// @brief Подготовитель вывода.
+  std::unique_ptr<ModelInferencePreparer> ModelInferencePreparer;
 };
-} // namespace ModelInferer
+} // namespace modelInferer
 } // namespace depthEstimator

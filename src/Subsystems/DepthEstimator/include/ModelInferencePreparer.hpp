@@ -16,9 +16,9 @@ class ModelInferenceProviderPreparer;
 /// @brief
 class ModelInferencePreparer final {
 public:
-  InferencePreparer();
+  ModelInferencePreparer();
 
-  ~InferencePreparer() = default;
+  ~ModelInferencePreparer() = default;
 
   /// @brief Подготовка перед запуском вывода.
   /// @param options Опции. Дополнительно смотреть @ref
@@ -28,8 +28,6 @@ public:
 private:
   /// @brief Подготовка входных тензоров.
   bool prepareInputTensors();
-  /// @brief
-  bool inference();
   /// @brief Подготовка выходных тензоров.
   bool prepareOutputTensors();
 
@@ -37,16 +35,15 @@ private:
   /// @param
   bool createInputOutputTensors();
 
-
   /// @brief Возвращает информацию о модели.
   /// @param inferenceContext Контекст вывода.
   /// @return Информация о модели.
   std::unique_ptr<ModelInfo> getModelInfo(InferenceContext &inferenceContext);
 private:
 
-
-  /// @brief
+  /// @brief Подготовитель провайдера вывода.
   std::unique_ptr<ModelInferenceProviderPreparer> modelInferenceProviderPreparer_;
+
 };
 } // namespace modelInferer
 } // namespace depthEstimator

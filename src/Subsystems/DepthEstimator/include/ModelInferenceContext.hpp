@@ -11,8 +11,8 @@
 
 //
 
-namespace inference {
-
+namespace depthEstimator {
+namespace modelInferer {
 /// @brief Информация о тензоре.
 struct TensorInfo final {
   /// @brief Тип данных элементов.
@@ -70,7 +70,7 @@ struct ModelPath final {
 };
 
 /// @brief Контекст вывода.
-struct InferenceContext final {
+struct ModelInferenceContext final {
   /// @brief Параметры пулов потоков.
   std::unique_ptr<Ort::ThreadingOptions> threadingOptions;
   /// @brief Окружение.
@@ -104,4 +104,5 @@ struct InferenceContext final {
   /// @brief
   std::vector<std::unique_ptr<Ort::Value>> outputTensorValues;
 };
-} // namespace inference
+} // namespace modelInferer
+} // namespace depthEstimator
