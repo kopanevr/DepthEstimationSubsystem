@@ -4,7 +4,6 @@
 
 // Подсистемы
 
-#include "Logger.hpp"
 #include "DepthEstimator.hpp"
 
 //
@@ -39,8 +38,11 @@ bool SubsystemManager::setBeforeStartUp() {
   } else {
     return false;
   }
+
   for (const auto &item : subsystems_) {
-    item->startUp();
+    if (!item->startUp()) {
+      return false;
+    }
   }
 
   return true;

@@ -4,13 +4,19 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager)
 
+add_subdirectory(
+  ${CMAKE_SOURCE_DIR}/src/Subsystems/DepthEstimator
+  ${CMAKE_BINARY_DIR}/src/Subsystems/DepthEstimator
+)
+
 target_include_directories(
   Application PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/BitField/include
 )
+
+target_include_directories(Application PRIVATE ${CMAKE_SOURCE_DIR}/src/Subsystems/DepthEstimator/include)
 
 target_link_libraries(
   Application PRIVATE

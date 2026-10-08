@@ -33,7 +33,15 @@ bool DepthEstimator::setBeforeStartUp() {
   return true;
 }
 
-/// @brief
+/// @brief Тело процесса.
 void DepthEstimator::processBody() {
+  if (!modelInferer_) {
+    modelInferer_.reset(new (std::nothrow) ModelInferer(std::move(modelInferenceContext_)))
+    if (!modelInferer_) {
+      return;
+    }
 
+    // Вывод.
+    modelInferer_->infer();
+  }
 }

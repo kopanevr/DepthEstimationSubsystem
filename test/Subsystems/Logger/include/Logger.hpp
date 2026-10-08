@@ -73,7 +73,7 @@ private:
   /// @brief Предварительная настройка перед запуском подсистемы.
   bool setBeforeStartUp() override { return true; }
   /// @brief Предварительная настройка перед остановкой подсистемы.
-  void setBeforeShutDown() override { }
+  void setBeforeShutDown() override {}
 
   /// @brief Тело процесса.
   void processBody() override {}
@@ -87,24 +87,30 @@ private:
 };
 } // namespace logger
 
-//
-
 #define LOG(...) logger::Logger::getInstance()->log(__VA_ARGS__)
 
-#ifndef NDEBUG && __cplusplus >= 202002L
+#if defined(__cppcpp) && __cplusplus >= 202002L
+
+#ifndef NDEBUG
 #define DEBUG(...) LOG("[ОТЛАДКА] " __VA_OPT__(,) __VA_ARGS__)
 #else
 #define DEBUG(...) ((void)0)
 #endif
 
-#if __cplusplus >= 202002L
 #define INFO(...) LOG("[ИНФО] " __VA_OPT__(,) __VA_ARGS__)
 #define WARNING(...) LOG("[ВНИМАНИЕ] " __VA_OPT__(,) __VA_ARGS__)
 #define ERROR(...) LOG("[ОШИБКА] " __VA_OPT__(,) __VA_ARGS__)
+
+#define SEPARATOR LOG("------")
+
 #else
+
+#define DEBUG(...) ((void)0)
+
 #define INFO(...) ((void)0)
 #define WARNING(...) ((void)0)
 #define ERROR(...) ((void)0)
-#endif
 
-#define SEPARATOR LOG("------")
+#define SEPARATOR ((void)0)
+
+#endif

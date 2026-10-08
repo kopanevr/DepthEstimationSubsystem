@@ -46,7 +46,7 @@ private:
   /// @brief Подготовитель провайдера вывода.
   std::unique_ptr<ModelInferenceProviderPreparer> modelInferenceProviderPreparer_;
   /// @brief Установщик пути к моделям.
-  std::unique_ptr<ModelsPathSetter> modelsPathSetter;
+  std::unique_ptr<ModelsPathSetter> modelsPathSetter_;
   /// @brief
   std::unique_ptr<ModelInferenceSessionCreator> modelInferenceSessionCreator_;
   /// @brief

@@ -71,20 +71,20 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
   }
 
   // Создание установщика пути к модели.
-  modelsPathSetter.reset(new (std::nothrow) ModelsPathSetter(std::move(localContext)));
-  if (!modelsPathSetter) {
+  modelsPathSetter_.reset(new (std::nothrow) ModelsPathSetter(std::move(localContext)));
+  if (!modelsPathSetter_) {
     return {};
   }
 
   // Установка пути к моделям.
-  localContext = modelsPathSetter->setPath();
+  localContext = modelsPathSetter_->setPath();
   if (!localContext) {
     ERROR("Ошибка при установке путей к моделям.");
     return {};
   }
 
   modelInferenceSessionCreator_.reset(new (std::nothrow) ModelInferenceSessionCreator(std::move(localContext)));
-  if (!modelsPathSetter) {
+  if (!modelInferenceSessionCreator_) {
     return {};
   }
 

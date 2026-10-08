@@ -6,17 +6,24 @@
 
 //
 
+#include "ModelInferencePipeline.hpp"
+
+//
+
 using namespace depthEstimator::modelInferer;
 
 //
 
-ModelInferer::ModelInferer() {
-
-}
-
 /// @brief
 void ModelInferer::infer() {
+  if (!modelInferencePipeline_) {}
+    modelInferencePipeline_.reset(new (std::nothrow) ModelInferencePipeline());
+    if (!modelInferencePipeline_) {
+      return;
+    }
 
+    modelInferenceContext_.pipeline();
+  }
 }
 
 

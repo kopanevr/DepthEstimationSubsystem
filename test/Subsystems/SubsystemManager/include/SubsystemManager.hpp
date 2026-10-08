@@ -16,6 +16,7 @@
 //
 
 #include <array>
+#include <memory>
 
 //
 
@@ -24,10 +25,9 @@
 
 //
 
-// Подсистемы.
+// Подсистемы
 
 #include "Logger.hpp"
-#include "DepthEstimator.hpp"
 
 //
 
