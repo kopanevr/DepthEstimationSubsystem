@@ -15,27 +15,24 @@
 
 //
 
-#include "ModelInferenceContext.hpp"
-
-//
-
 namespace subsystemManager {
 class SubsystemManager;
-}
+}// namespace subsystemManager
 
 //
 
 namespace depthEstimator {
-using namespace modelInferer;
-
-class ModelInferer;
+namespace modelInferer {
+struct ModelInferenceContext;
 class ModelInferencePreparer;
+class ModelInferer;
+} // namespace modelInferer
 
 /// @brief
 class DepthEstimator final : public Subsystem {
 public:
   /// @brief Деструктор.
-  ~DepthEstimator() = default;
+  ~DepthEstimator();
 
   /// @brief
   /// @return
@@ -45,10 +42,7 @@ public:
 
 private:
   /// @brief Конструктор.
-  DepthEstimator() {
-    // Инициализация.
-    init();
-  }
+  DepthEstimator();
 
   DepthEstimator &operator=(const DepthEstimator &) = delete;
   DepthEstimator(const DepthEstimator &) = delete;
@@ -75,10 +69,11 @@ private:
   static inline DepthEstimator *instance_;
 
   /// @brief Контекст вывода.
-  std::unique_ptr<ModelInferenceContext> modelInferenceContext_;
-  /// @brief
-  std::unique_ptr<ModelInferer> modelInferer_;
+  std::unique_ptr<modelInferer::ModelInferenceContext> modelInferenceContext_;
   /// @brief Подготовитель вывода.
-  std::unique_ptr<ModelInferencePreparer> modelInferencePreparer_;
+  std::unique_ptr<modelInferer::ModelInferencePreparer> modelInferencePreparer_;
+  /// @brief
+  std::unique_ptr<modelInferer::ModelInferer> modelInferer_;
+
 };
 } // namespace depthEstimator

@@ -4,6 +4,8 @@
 
 #include "ModelInferenceContext.hpp"
 
+//
+
 #include "InputTensorsCreator.hpp"
 #include "OutputTensorsCreator.hpp"
 
@@ -11,9 +13,15 @@
 
 //
 
-using namespace depthEstimator::modelInferer;
+namespace depthEstimator {
+namespace modelInferer {
+/// @brief Конструктор.
+/// @param modelInferenceContext Контекст вывода.
+InputOutputTensorsCreator::InputOutputTensorsCreator(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+    : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
-//
+/// @brief Деструктор.
+InputOutputTensorsCreator::~InputOutputTensorsCreator() = default;
 
 /// @brief
 /// @return
@@ -53,3 +61,5 @@ std::unique_ptr<ModelInferenceContext> InputOutputTensorsCreator::create() {
 
   return std::move(modelInferenceContext_);
 }
+} // namespace modelInferer
+} // namespace depthEstimator

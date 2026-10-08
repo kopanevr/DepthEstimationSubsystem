@@ -15,8 +15,10 @@ namespace app {
 /// @brief
 class ApplicationInfoPrinter final {
 public:
-  ApplicationInfoPrinter() = default;
-  ~ApplicationInfoPrinter() = default;
+  /// @brief Конструктор.
+  ApplicationInfoPrinter();
+  /// @brief Деструктор.
+  ~ApplicationInfoPrinter();
 
   /// @brief Вывод информации о приложении.
   void printInfo() const {

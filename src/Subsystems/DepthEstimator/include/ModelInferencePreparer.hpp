@@ -18,7 +18,7 @@ inline constexpr uint8_t option = 1 << 0;
 */
 } // namespace prepareOptions
 
-class ModelInferenceContext;
+struct ModelInferenceContext;
 class ModelInferenceProviderPreparer;
 class ModelsPathSetter;
 class ModelInferenceSessionCreator;
@@ -29,11 +29,9 @@ class ModelInferencePreparer final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  explicit ModelInferencePreparer::ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
-      : modelInferenceContext_(std::move(modelInferenceContext)) {}
-
+  explicit ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> modelInferenceContext);
   /// @brief Деструктор.
-  ~ModelInferencePreparer() = default;
+  ~ModelInferencePreparer();
 
   /// @brief Подготовка перед запуском вывода.
   /// @param options Опции. Дополнительно смотреть @ref prepareOptions.

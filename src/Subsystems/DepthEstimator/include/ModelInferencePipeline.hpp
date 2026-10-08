@@ -3,23 +3,22 @@
 //
 
 #include <memory>
-#inclincludedue <thread>
+#include <thread>
 
 //
 
 namespace depthEstimator {
 namespace modelInferer {
-class ModelInferenceContext;
+struct ModelInferenceContext;
 
 /// @brief
 class ModelInferencePipeline final {
 public:
-    /// @brief Конструктор.
+  /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  explicit ModelInferencePipeline::ModelInferencePipeline(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
-    : modelInferenceContext_(std::move(modelInferenceContext)) {}
-
-  ~ModelInferencePipeline() = default;
+  explicit ModelInferencePipeline(std::unique_ptr<ModelInferenceContext> modelInferenceContext);
+  /// @brief Деструктор.
+  ~ModelInferencePipeline();
 
   /// @brief
   void pipeline();

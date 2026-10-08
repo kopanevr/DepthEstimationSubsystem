@@ -12,19 +12,18 @@
 
 namespace depthEstimator {
 namespace modelInferer {
-class ModelInferenceContext;
+struct ModelInferenceContext;
 
-class InputTensorsCreator final : public TensorCreator {
+class OutputTensorsCreator final : public TensorCreator  {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  explicit InputTensorsCreator::InputTensorsCreator(std::unique_ptr<ModelInferenceContext> inferenceContext)
-    : inferenceContext_(std::move(inferenceContext)) {}
+  explicit OutputTensorsCreator(std::unique_ptr<ModelInferenceContext> inferenceContext);
 
   /// @brief Деструктор.
-  ~InputTensorsCreator() = default;
+  ~OutputTensorsCreator();
 
-  /// @brief Создает входные тензоры.
+  /// @brief Подготовка перед запуском вывода.
   std::unique_ptr<ModelInferenceContext> create();
 
 private:

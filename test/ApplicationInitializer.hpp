@@ -10,11 +10,19 @@
 #include <memory>
 
 //
+namespace cmd {
+class CommandInterpreter;
+} // namespace cmd
+
+namespace subsystemManager {
+class SubsystemManager;
+} // namespace subsystemManager
+
+//
 
 namespace app {
 class CommandInterpreter;
 class ApplicationContext;
-class subsystemManager::SubsystemManager;
 
 /// @brief
 class ApplicationInitializer final {
@@ -22,11 +30,8 @@ public:
   /// @brief Конструктор.
   /// @param applicationContext
   /// @param subsystemManager
-  ApplicationInitializer::ApplicationInitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
-                                                 const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
-      : applicationContext_(applicationContext),
-        subsystemManager_(subsystemManager) {}
-
+  ApplicationInitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
+                         const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager);
   /// @brief Деструктор.
   ~ApplicationInitializer() = default;
 
@@ -48,7 +53,7 @@ private:
   /// @brief Интерпретатор команд.
   std::unique_ptr<cmd::CommandInterpreter> commandInterpreter_;
   /// @brief Контекст приложения.
-  std::shared_ptr<app::ApplicationContext> applicationContext_;
+  std::shared_ptr<ApplicationContext> applicationContext_;
   /// @brief Менеджер подсистем.
   std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager_;
 };

@@ -15,12 +15,17 @@
 
 //
 
+namespace subsystemManager {
+class SubsystemManager;
+} // namespace subsystemManager
+
+//
+
 namespace app {
 class ApplicationInfoPrinter;
 class ApplicationInitializer;
 class ApplicationDeinitializer;
 class ApplicationContext;
-class subsystemManager::SubsystemManager;
 
 /// @brief Приложение.
 class Application final {
@@ -40,6 +45,7 @@ public:
 private:
   /// @brief Конструктор.
   Application(int argc, char *argv[]);
+  /// @brief Деструктор.
   ~Application();
 
 private:
@@ -52,8 +58,9 @@ private:
   /// @brief Деинициализатор приложения.
   std::unique_ptr<ApplicationDeinitializer> applicationDeinitializer_;
   /// @brief Контекст приложения.
-  std::shared_ptr<app::ApplicationContext> applicationContext_;
+  std::shared_ptr<ApplicationContext> applicationContext_;
   /// @brief Менеджер подсистем.
   std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager_;
+
 };
 } // namespace app

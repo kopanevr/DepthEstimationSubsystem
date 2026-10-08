@@ -17,9 +17,15 @@
 
 //
 
-using namespace depthEstimator::modelInferer;
+namespace depthEstimator {
+namespace modelInferer {
+/// @brief Конструктор.
+/// @param inferenceContext Контекст вывода.
+explicit ModelInferenceInfoGetter::ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+    : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
-//
+/// @brief Деструктор.
+ModelInferenceInfoGetter::~ModelInferenceInfoGetter() = default;
 
 /// @brief Возвращает информацию о модели.
 /// @return
@@ -127,3 +133,5 @@ std::unique_ptr<ModelInferenceContext> ModelInferenceInfoGetter::get() {
 
   return std::move(modelInferenceContext_);
 }
+} // namespace modelInferer
+} // namespace depthEstimator

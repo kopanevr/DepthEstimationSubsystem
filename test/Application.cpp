@@ -21,11 +21,7 @@
 
 //
 
-using namespace app;
-using namespace cmd;
-
-//
-
+namespace app {
 /// @brief Конструктор.
 /// @param argc
 /// @param argv
@@ -75,3 +71,7 @@ int Application::exec() {
 
   return EXIT_SUCCESS;
 }
+
+/// @brief Деструктор.
+Application::~Application() = default;
+} // namespace app

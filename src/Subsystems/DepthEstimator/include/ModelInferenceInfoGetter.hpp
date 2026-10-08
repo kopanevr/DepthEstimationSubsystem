@@ -8,18 +8,16 @@
 
 namespace depthEstimator {
 namespace modelInferer {
-class ModelInferenceContext;
+struct ModelInferenceContext;
 
 /// @brief
 class ModelInferenceInfoGetter final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  explicit ModelInferenceInfoGetter::ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
-    : modelInferenceContext_(std::move(modelInferenceContext)) {}
-
+  explicit ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext);
   /// @brief Деструктор.
-  ~ModelInferenceInfoGetter() = default;
+  ~ModelInferenceInfoGetter();
 
   /// @brief Получает информацию о модели.
   [[nodiscard]] std::unique_ptr<ModelInferenceContext> get();

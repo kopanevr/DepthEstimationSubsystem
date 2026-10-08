@@ -7,9 +7,14 @@
 
 //
 
+namespace subsystemManager {
+class SubsystemManager;
+} // namespace subsystemManager
+
+//
+
 namespace app {
 class ApplicationContext;
-class subsystemManager::SubsystemManager;
 
 /// @brief
 class ApplicationDeinitializer final {
@@ -17,20 +22,18 @@ public:
   /// @brief Конструктор.
   /// @param applicationContext
   /// @param subsystemManager
-  ApplicationDeinitializer::ApplicationDeinitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
-                                                     const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
-      : applicationContext_(applicationContext),
-        subsystemManager_(subsystemManager) {}
-
+  ApplicationDeinitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
+                           const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager);
   /// @brief Деструктор.
-  ~ApplicationDeinitializer() = default;
+  ~ApplicationDeinitializer();
 
   /// @brief Деинициализация.
   /// @details
   void deinit();
 
 private:
-  std::shared_ptr<app::ApplicationContext> applicationContext_;
+  std::shared_ptr<ApplicationContext> applicationContext_;
   /// @brief Менеджер подсистем.
   std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager_;
 };
+} // namespace app

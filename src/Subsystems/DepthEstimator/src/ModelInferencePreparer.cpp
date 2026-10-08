@@ -22,9 +22,15 @@
 
 //
 
-using namespace depthEstimator::modelInferer;
+namespace depthEstimator {
+namespace modelInferer {
+/// @brief Конструктор.
+/// @param inferenceContext Контекст вывода.
+ModelInferencePreparer::ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+    : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
-//
+/// @brief Деструктор.
+ModelInferencePreparer::~ModelInferencePreparer() = default;
 
 /// @brief Подготовка перед запуском вывода.
 /// @param options Опции. Дополнительно смотреть @ref prepareOptions.
@@ -109,3 +115,5 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
 
   return std::move(localContext);
 }
+} // namespace modelInferer
+} // namespace depthEstimator

@@ -13,9 +13,17 @@
 
 //
 
-using namespace app;
+namespace app {
+  /// @brief Конструктор.
+  /// @param applicationContext
+  /// @param subsystemManager
+  ApplicationInitializer::ApplicationInitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
+                                                 const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
+      : applicationContext_(applicationContext),
+        subsystemManager_(subsystemManager) {}
 
-//
+  /// @brief Деструктор.
+  ApplicationInitializer::~ApplicationInitializer() = default;
 
 /// @brief Инициализация.
 /// @details
@@ -65,4 +73,5 @@ bool ApplicationInitializer::prepare(int argc, char *argv[]) {
 
   // Запуск менеджера подсистем.
   return subsystemManager_->startUp();
+}
 }

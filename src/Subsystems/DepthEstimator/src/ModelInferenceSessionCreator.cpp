@@ -16,9 +16,15 @@
 
 //
 
-using namespace depthEstimator::modelInferer;
+namespace depthEstimator {
+namespace modelInferer {
+/// @brief Конструктор.
+/// @param inferenceContext
+explicit ModelInferenceSessionCreator::ModelInferenceSessionCreator(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+    : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
-//
+/// @brief Деструктор.
+ModelInferenceSessionCreator::~ModelInferenceSessionCreator() = default;
 
 /// @brief
 std::unique_ptr<ModelInferenceContext> ModelInferenceSessionCreator::create() {
@@ -36,7 +42,6 @@ std::unique_ptr<ModelInferenceContext> ModelInferenceSessionCreator::create() {
     modelInferenceContext_->session.reset(new (std::nothrow) Ort::Session(*modelInferenceContext_->env, optimizedModelPath, *modelInferenceContext_->sessionOptions));
     if (!modelInferenceContext_->session) {
       ERROR("Ошибка при создании сессии.");
-      modelInferenceContext_.reset();
       return {};
     }
   } else {
@@ -64,3 +69,5 @@ std::unique_ptr<ModelInferenceContext> ModelInferenceSessionCreator::create() {
 
   return std::move(modelInferenceContext_);
 }
+} // namespace modelInferer
+} // namespace depthEstimator

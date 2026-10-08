@@ -12,6 +12,18 @@
 
 //
 
+namespace app {
+/// @brief Конструктор.
+/// @param applicationContext
+/// @param subsystemManager
+ApplicationDeinitializer::ApplicationDeinitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
+                                                   const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
+    : applicationContext_(applicationContext),
+      subsystemManager_(subsystemManager) {}
+
+/// @brief Деструктор.
+ApplicationDeinitializer::~ApplicationDeinitializer() = default;
+
 /// @brief Деинициализация.
 /// @details Производит остановку менеджера подсистем.
 void ApplicationDeinitializer::deinit() {
@@ -26,3 +38,4 @@ void ApplicationDeinitializer::deinit() {
 
   applicationContext_->state = app::ApplicationContext::State::Deinitialized;
 }
+} // namespace app

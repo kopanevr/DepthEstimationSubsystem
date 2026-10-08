@@ -8,18 +8,16 @@
 
 namespace depthEstimator {
 namespace modelInferer {
-class ModelInferenceContext;
+struct ModelInferenceContext;
 
 /// @brief
 class ModelInferenceProviderPreparer final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext
-  explicit ModelInferenceProviderPreparer(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
-      : modelInferenceContext_(std::move(modelInferenceContext)) {}
-
+  explicit ModelInferenceProviderPreparer(std::unique_ptr<ModelInferenceContext> modelInferenceContext);
   /// @brief Деструктор.
-  ~ModelInferenceProviderPreparer() = default;
+  ~ModelInferenceProviderPreparer();
 
   /// @brief
   [[nodiscard]] std::unique_ptr<ModelInferenceContext> prepare();
