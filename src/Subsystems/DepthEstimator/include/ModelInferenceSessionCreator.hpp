@@ -14,7 +14,7 @@ class ModelInferenceSessionCreator final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext
-  explicit ModelInferenceSessionCreator(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
+  explicit ModelInferenceSessionCreator(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
       : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
   /// @brief Деструктор.

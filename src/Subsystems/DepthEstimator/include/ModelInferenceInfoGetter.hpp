@@ -15,7 +15,7 @@ class ModelInferenceInfoGetter final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  ModelInferenceInfoGetter::ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
+  explicit ModelInferenceInfoGetter::ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
     : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
   /// @brief Деструктор.

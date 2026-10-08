@@ -18,7 +18,7 @@ using namespace depthEstimator::modelInferer;
 /// @brief
 /// @return
 std::unique_ptr<ModelInferenceContext> InputOutputTensorsCreator::create() {
-  modelInferenceInfoGetter_.reset(new (std::nothrow) ModelInferenceInfoGetter(modelInferenceContext_));
+  modelInferenceInfoGetter_.reset(new (std::nothrow) ModelInferenceInfoGetter(std::move(modelInferenceContext_)));
   if (!modelInferenceInfoGetter_) {
     return {};
   }
@@ -29,7 +29,7 @@ std::unique_ptr<ModelInferenceContext> InputOutputTensorsCreator::create() {
     return {};
   }
 
-  inputTensorsCreator_.reset(new (std::nothrow) InputTensorsCreator(modelInferenceContext_));
+  inputTensorsCreator_.reset(new (std::nothrow) InputTensorsCreator(std::move(modelInferenceContext_)));
   if (!inputTensorsCreator_) {
     return {};
   }
@@ -40,7 +40,7 @@ std::unique_ptr<ModelInferenceContext> InputOutputTensorsCreator::create() {
     return {};
   }
 
-  outputTensorsCreator_.reset(new (std::nothrow) OutputTensorsCreator(modelInferenceContext_));
+  outputTensorsCreator_.reset(new (std::nothrow) OutputTensorsCreator(std::move(modelInferenceContext_)));
   if (!outputTensorsCreator_) {
     return {};
   }

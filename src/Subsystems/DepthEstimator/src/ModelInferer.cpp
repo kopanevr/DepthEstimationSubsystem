@@ -6,29 +6,16 @@
 
 //
 
-#include "ModelInferencePreparer.hpp"
-
-//
-
 using namespace depthEstimator::modelInferer;
 
 //
 
+ModelInferer::ModelInferer() {
+
+}
+
 /// @brief
 void ModelInferer::infer() {
-  if (!modelInferenceContext_) {
-    modelInferencePreparer_.reset(new (std::nothrow) ModelInferencePreparer(modelInferenceContext_));
-    if (!modelInferencePreparer_) {
-      return;
-    }
-
-    // Подготовка вывода.
-    modelInferenceContext_ = modelInferencePreparer_->prepare();
-    if (!modelInferenceContext_) {
-      return;
-    }
-  }
-
 
 }
 
@@ -99,10 +86,5 @@ bool Inference::inference() {
     inferenceContext_->modelInfo->outputCount
   );
 
-  return true;
-}
-
-/// @brief Подготовка выходных тензоров.
-bool Inference::prepareOutputTensors() {
   return true;
 }

@@ -29,8 +29,8 @@ class ModelInferencePreparer final {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  ModelInferencePreparer::ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> &inferenceContext)
-    : modelInferenceContext(std::move(inferenceContext)) {}
+  explicit ModelInferencePreparer::ModelInferencePreparer(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+      : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
   /// @brief Деструктор.
   ~ModelInferencePreparer() = default;
@@ -41,17 +41,14 @@ public:
 
 private:
   /// @brief Контекст вывода.
-  std::unique_ptr<ModelInferenceContext> modelInferenceContext;
+  std::unique_ptr<ModelInferenceContext> modelInferenceContext_;
 
   /// @brief Подготовитель провайдера вывода.
   std::unique_ptr<ModelInferenceProviderPreparer> modelInferenceProviderPreparer_;
-
   /// @brief Установщик пути к моделям.
   std::unique_ptr<ModelsPathSetter> modelsPathSetter;
-
   /// @brief
   std::unique_ptr<ModelInferenceSessionCreator> modelInferenceSessionCreator_;
-
   /// @brief
   std::unique_ptr<InputOutputTensorsCreator> inputOutputTensorCreator_;
 

@@ -23,7 +23,7 @@ class ModelsPathSetter final {
 public:
   /// @brief Конструктор.
   /// @param modelInferenceContext
-  explicit ModelsPathSetter(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
+  explicit ModelsPathSetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
     : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
   // Деструктор.

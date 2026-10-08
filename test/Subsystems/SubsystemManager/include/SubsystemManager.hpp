@@ -46,38 +46,7 @@ public:
   static SubsystemManager &getInstance() { return *instance_; }
 
   /// @brief Настройка перед запуском подсистемы.
-  bool setBeforeStartUp() override {
-    // Добавление подсистем.
-    size_t i = 0;
-
-    if (i < subsystemCount_) {
-      subsystems_[i].reset(new (std::nothrow) logger::Logger());
-      if (!subsystems_[i]) {
-        return false;
-      }
-      logger::Logger::instance_ = static_cast<logger::Logger *>(subsystems_[i].get());
-      i++;
-    } else {
-      return false;
-    }
-
-    if (i < subsystemCount_) {
-      subsystems_[i].reset(new (std::nothrow) depthEstimator::DepthEstimator());
-      if (!subsystems_[i]) {
-        return false;
-      }
-      depthEstimator::DepthEstimator::instance_ = static_cast<depthEstimator::DepthEstimator *>(subsystems_[i].get());
-      i++;
-    } else {
-      return false;
-    }
-
-    for (const auto &item : subsystems_) {
-      item->startUp();
-    }
-
-    return true;
-  }
+  bool setBeforeStartUp() override;
 
   /// @brief Настройка перед остановкой подсистемы.
   void setBeforeShutDown() override {

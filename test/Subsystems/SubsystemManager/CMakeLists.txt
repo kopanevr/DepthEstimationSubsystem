@@ -5,6 +5,7 @@ target_include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   ${CMAKE_SOURCE_DIR}/test/Subsystems/Subsystem/include
   ${CMAKE_SOURCE_DIR}/test/Subsystems/Logger/include
+  ${CMAKE_SOURCE_DIR}/src/Subsystems/DepthEstimatopr/include
 )
 
 target_link_libraries(

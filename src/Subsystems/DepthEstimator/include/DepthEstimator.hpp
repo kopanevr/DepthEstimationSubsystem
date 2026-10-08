@@ -15,6 +15,10 @@
 
 //
 
+#include "ModelInferenceContext.hpp"
+
+//
+
 namespace subsystemManager {
 class SubsystemManager;
 }
@@ -22,7 +26,10 @@ class SubsystemManager;
 //
 
 namespace depthEstimator {
-class modelInferer::ModelInferer;
+using namespace modelInferer;
+
+class ModelInferer;
+class ModelInferencePreparer;
 
 /// @brief
 class DepthEstimator final : public Subsystem {
@@ -42,7 +49,6 @@ private:
     // Инициализация.
     init();
   }
-
 
   DepthEstimator &operator=(const DepthEstimator &) = delete;
   DepthEstimator(const DepthEstimator &) = delete;
@@ -68,8 +74,11 @@ private:
   /// @brief
   static inline DepthEstimator *instance_;
 
+  /// @brief Контекст вывода.
+  std::unique_ptr<ModelInferenceContext> modelInferenceContext_;
   /// @brief
-  std::unique_ptr<modelInferer::ModelInferer> modelInferer_;
-
+  std::unique_ptr<ModelInferer> modelInferer_;
+  /// @brief Подготовитель вывода.
+  std::unique_ptr<ModelInferencePreparer> modelInferencePreparer_;
 };
 } // namespace depthEstimator

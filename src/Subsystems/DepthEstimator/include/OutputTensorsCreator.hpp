@@ -18,7 +18,7 @@ class OutputTensorsCreator final : public TensorCreator  {
 public:
   /// @brief Конструктор.
   /// @param inferenceContext Контекст вывода.
-  explicit OutputTensorsCreator(std::unique_ptr<ModelInferenceContext> &inferenceContext)
+  explicit OutputTensorsCreator(std::unique_ptr<ModelInferenceContext> inferenceContext)
     : inferenceContext_(std::move(inferenceContext)) {}
 
   /// @brief Деструктор.

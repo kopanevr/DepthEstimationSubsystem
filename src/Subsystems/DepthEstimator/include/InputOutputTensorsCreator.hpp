@@ -18,7 +18,7 @@ class InputOutputTensorsCreator final {
 public:
   /// @brief Конструктор.
   /// @param modelInferenceContext Контекст вывода.
-  explicit InputOutputTensorsCreator(std::unique_ptr<ModelInferenceContext> &modelInferenceContext)
+  explicit InputOutputTensorsCreator(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
       : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
   ~InputOutputTensorsCreator() = default;

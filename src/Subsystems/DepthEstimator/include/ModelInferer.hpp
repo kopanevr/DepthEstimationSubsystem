@@ -14,7 +14,11 @@ class ModelInferencePreparer;
 /// @brief
 class ModelInferer final {
 public:
-  ModelInferer() = default;
+    /// @brief Конструктор.
+  /// @param inferenceContext Контекст вывода.
+  explicit ModelInferer::ModelInferer(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+    : modelInferenceContext_(std::move(modelInferenceContext)) {}
+
   ~ModelInferer() = default;
 
   /// @brief
@@ -23,9 +27,6 @@ public:
 private:
   /// @brief Контекст вывода.
   std::unique_ptr<ModelInferenceContext> modelInferenceContext_;
-
-  /// @brief Подготовитель вывода.
-  std::unique_ptr<ModelInferencePreparer> modelInferencePreparer_;
 };
 } // namespace modelInferer
 } // namespace depthEstimator

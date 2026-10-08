@@ -18,7 +18,7 @@
 /// @brief
 class OperatorsRegistrator final {
 public:
-  OperatorsRegistrator(std::unique_ptr<Ort::SessionOptions> &sessionOptions)
+  explicit OperatorsRegistrator(std::unique_ptr<Ort::SessionOptions> sessionOptions)
       : sessionOptions_(std::move(sessionOptions)) {}
 
   ~OperatorsRegistrator() = default;

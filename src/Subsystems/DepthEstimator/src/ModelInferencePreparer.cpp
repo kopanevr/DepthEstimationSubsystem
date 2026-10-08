@@ -58,7 +58,7 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
   }
 
   // Создание подготовителя провайдера вывода.
-  modelInferenceProviderPreparer_.reset(new (std::nothrow) ModelInferenceProviderPreparer(localContext));
+  modelInferenceProviderPreparer_.reset(new (std::nothrow) ModelInferenceProviderPreparer(std::move(localContext)));
   if (!modelInferenceProviderPreparer_) {
     return {};
   }
@@ -71,7 +71,7 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
   }
 
   // Создание установщика пути к модели.
-  modelsPathSetter.reset(new (std::nothrow) ModelsPathSetter(localContext));
+  modelsPathSetter.reset(new (std::nothrow) ModelsPathSetter(std::move(localContext)));
   if (!modelsPathSetter) {
     return {};
   }
@@ -83,7 +83,7 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
     return {};
   }
 
-  modelInferenceSessionCreator_.reset(new (std::nothrow) ModelInferenceSessionCreator(localContext));
+  modelInferenceSessionCreator_.reset(new (std::nothrow) ModelInferenceSessionCreator(std::move(localContext)));
   if (!modelsPathSetter) {
     return {};
   }
@@ -95,7 +95,7 @@ std::unique_ptr<ModelInferenceContext> ModelInferencePreparer::prepare(const uin
     return {};
   }
 
-  inputOutputTensorCreator_.reset(new (std::nothrow) InputOutputTensorsCreator(localContext));
+  inputOutputTensorCreator_.reset(new (std::nothrow) InputOutputTensorsCreator(std::move(localContext)));
   if (!inputOutputTensorCreator_) {
     return {};
   }
