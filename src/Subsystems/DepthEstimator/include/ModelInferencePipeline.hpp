@@ -3,7 +3,6 @@
 //
 
 #include <memory>
-#include <thread>
 
 //
 
@@ -21,7 +20,7 @@ public:
   ~ModelInferencePipeline();
 
   /// @brief
-  void pipeline();
+  static void pipeline();
 
 private:
   /// @brief Контекст вывода.

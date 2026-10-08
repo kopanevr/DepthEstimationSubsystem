@@ -2,10 +2,6 @@
 
 //
 
-#include <memory>
-
-//
-
 #include "ModelInferenceContext.hpp"
 
 //
@@ -21,9 +17,7 @@ ModelInferencePipeline::ModelInferencePipeline(std::unique_ptr<ModelInferenceCon
 ModelInferencePipeline::~ModelInferencePipeline() = default;
 
 /// @brief
-void ModelInferencePipeline::pipeline() {
-
-}
+void ModelInferencePipeline::pipeline() {}
 } // namespace modelInferer
 } // namespace depthEstimator
 

@@ -32,6 +32,9 @@ void ModelInferer::infer() {
       return;
     }
 
+    modelInferenceThread_ = std::jthread([ptr = modelInferencePipeline_.get()]() {
+      ptr->pipeline();
+    });
   }
 }
 } // namespace modelInferer
