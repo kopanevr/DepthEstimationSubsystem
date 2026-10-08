@@ -30,6 +30,9 @@ class ApplicationContext;
 /// @brief Приложение.
 class Application final {
 public:
+  /// @brief Деструктор.
+  ~Application();
+
   /// @brief
   static Application *getInstance(int argc, char *argv[]) {
     if (!instance_) {
@@ -45,8 +48,6 @@ public:
 private:
   /// @brief Конструктор.
   Application(int argc, char *argv[]);
-  /// @brief Деструктор.
-  ~Application();
 
 private:
   /// @brief

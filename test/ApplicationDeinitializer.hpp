@@ -7,6 +7,10 @@
 
 //
 
+#include <memory>
+
+//
+
 namespace subsystemManager {
 class SubsystemManager;
 } // namespace subsystemManager
@@ -22,8 +26,8 @@ public:
   /// @brief Конструктор.
   /// @param applicationContext
   /// @param subsystemManager
-  ApplicationDeinitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
-                           const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager);
+  ApplicationDeinitializer(std::shared_ptr<app::ApplicationContext> applicationContext,
+                           std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager);
   /// @brief Деструктор.
   ~ApplicationDeinitializer();
 

@@ -1,7 +1,14 @@
-add_executable(Application Application.cpp main.cpp)
+file(
+  GLOB_RECURSE
+  SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+)
+
+add_executable(Application ${SOURCES})
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/FrameGrabber)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager)
 
 add_subdirectory(
@@ -13,6 +20,7 @@ target_include_directories(
   Application PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/FrameGrabber/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/BitField/include
 )
 

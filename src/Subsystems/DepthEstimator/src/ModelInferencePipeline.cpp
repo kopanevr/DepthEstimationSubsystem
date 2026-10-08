@@ -6,11 +6,15 @@
 
 //
 
+#include "ModelInferenceContext.hpp"
+
+//
+
 namespace depthEstimator {
 namespace modelInferer {
 /// @brief Конструктор.
 /// @param inferenceContext Контекст вывода.
-explicit ModelInferencePipeline::ModelInferencePipeline(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+ModelInferencePipeline::ModelInferencePipeline(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
     : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
 /// @brief Деструктор.

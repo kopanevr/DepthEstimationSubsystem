@@ -6,10 +6,7 @@
 
 //
 
-using namespace cmd;
-
-//
-
+namespace cmd {
 /// @brief Тело процесса.
 /// @details
 /// @param argc Количество аргументов.
@@ -41,3 +38,4 @@ void CommandInterpreter::bodyProcess(int argc, char *argv[]) {
 
   isSuccessfullyParsed_ = status;
 }
+} // namespace cmd

@@ -6,6 +6,10 @@
 
 //
 
+#include "CommandInterpreter.hpp"
+
+//
+
 // Подсистемы
 
 #include "SubsystemManager.hpp"
@@ -16,10 +20,10 @@ namespace app {
 /// @brief Конструктор.
 /// @param applicationContext
 /// @param subsystemManager
-ApplicationDeinitializer::ApplicationDeinitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
-                                                   const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
-    : applicationContext_(applicationContext),
-      subsystemManager_(subsystemManager) {}
+ApplicationDeinitializer::ApplicationDeinitializer(std::shared_ptr<app::ApplicationContext> applicationContext,
+                                                   std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
+    : applicationContext_(std::move(applicationContext)),
+      subsystemManager_(std::move((subsystemManager))) {}
 
 /// @brief Деструктор.
 ApplicationDeinitializer::~ApplicationDeinitializer() = default;

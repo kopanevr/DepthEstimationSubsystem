@@ -21,7 +21,7 @@ namespace depthEstimator {
 namespace modelInferer {
 /// @brief Конструктор.
 /// @param inferenceContext Контекст вывода.
-explicit ModelInferenceInfoGetter::ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
+ModelInferenceInfoGetter::ModelInferenceInfoGetter(std::unique_ptr<ModelInferenceContext> modelInferenceContext)
     : modelInferenceContext_(std::move(modelInferenceContext)) {}
 
 /// @brief Деструктор.
@@ -92,7 +92,7 @@ std::unique_ptr<ModelInferenceContext> ModelInferenceInfoGetter::get() {
 #if (USER_OPTION_SHOW_MODEL_INFO == 1)
   // Вывод информации о входе.
   LOG("Вход: ");
-  LOG("Имя: ", inferenceContext.inputTensorNames.at(0));
+  LOG("Имя: ", modelInferenceContext_->inputTensorNames.at(0));
   printTensorShape(modelInfo->inputTensorInfo); // Смотреть выше.
   LOG("Тип элементов: ", getTensorElementType(modelInfo->inputTensorInfo->tensorElementDataType));
 #endif
@@ -124,7 +124,7 @@ std::unique_ptr<ModelInferenceContext> ModelInferenceInfoGetter::get() {
 #if (USER_OPTION_SHOW_MODEL_INFO == 1)
   // Вывод информации о входе.
   LOG("Выход: ");
-  LOG("Имя: ", inferenceContext.outputTensorNames.at(0));
+  LOG("Имя: ", modelInferenceContext_->outputTensorNames.at(0));
   printTensorShape(modelInfo->outputTensorInfo); // Смотреть выше.
   LOG("Тип элементов: ", getTensorElementType(modelInfo->outputTensorInfo->tensorElementDataType));
 #endif

@@ -32,7 +32,8 @@
 //
 
 namespace app {
-class ApplicationBootstrapper;
+class ApplicationInitializer;
+class ApplicationDeinitializer;
 } // namespace app
 
 //
@@ -90,7 +91,9 @@ private:
   }
 
   /// @brief Дружественный класс.
-  friend class app::ApplicationBootstrapper;
+  friend class app::ApplicationInitializer;
+  /// @brief Дружественный класс.
+  friend class app::ApplicationDeinitializer;
 
   /// @brief Инициализация подсистемы.
   void init() override {

@@ -2,6 +2,10 @@
 
 //
 
+#include "ApplicationContext.hpp"
+
+//
+
 #include "CommandInterpreter.hpp"
 
 //
@@ -14,16 +18,16 @@
 //
 
 namespace app {
-  /// @brief Конструктор.
-  /// @param applicationContext
-  /// @param subsystemManager
-  ApplicationInitializer::ApplicationInitializer(const std::shared_ptr<app::ApplicationContext> applicationContext,
-                                                 const std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
-      : applicationContext_(applicationContext),
-        subsystemManager_(subsystemManager) {}
+/// @brief Конструктор.
+/// @param applicationContext
+/// @param subsystemManager
+ApplicationInitializer::ApplicationInitializer(std::shared_ptr<app::ApplicationContext> applicationContext,
+                                               std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager)
+    : applicationContext_(std::move(applicationContext)),
+      subsystemManager_(std::move(subsystemManager)) {}
 
-  /// @brief Деструктор.
-  ApplicationInitializer::~ApplicationInitializer() = default;
+/// @brief Деструктор.
+ApplicationInitializer::~ApplicationInitializer() = default;
 
 /// @brief Инициализация.
 /// @details

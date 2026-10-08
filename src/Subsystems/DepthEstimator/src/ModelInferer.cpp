@@ -6,6 +6,10 @@
 
 //
 
+#include "ModelInferenceContext.hpp"
+
+//
+
 #include "ModelInferencePipeline.hpp"
 
 //
@@ -28,7 +32,6 @@ void ModelInferer::infer() {
       return;
     }
 
-    modelInferenceThread_ = std::jthread(&modelInferencePipeline_->pipeline(), modelInferencePipeline_.get());
   }
 }
 } // namespace modelInferer

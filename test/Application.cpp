@@ -27,13 +27,13 @@ namespace app {
 /// @param argv
 Application::Application(int argc, char *argv[]) {
   // Создание инициализатора приложения.
-  applicationInitializer_.reset(new (std::nothrow) ApplicationInitializer(subsystemManager_, subsystemManager_));
+  applicationInitializer_.reset(new (std::nothrow) ApplicationInitializer(applicationContext_, subsystemManager_));
   if (!applicationInitializer_) {
     return;
   }
 
   // Создание деинициализатора приложения.
-  applicationDeinitializer_.reset(new (std::nothrow) ApplicationDeinitializer(subsystemManager_, subsystemManager_));
+  applicationDeinitializer_.reset(new (std::nothrow) ApplicationDeinitializer(applicationContext_, subsystemManager_));
   if (!applicationDeinitializer_) {
     return;
   }
@@ -71,7 +71,4 @@ int Application::exec() {
 
   return EXIT_SUCCESS;
 }
-
-/// @brief Деструктор.
-Application::~Application() = default;
 } // namespace app
