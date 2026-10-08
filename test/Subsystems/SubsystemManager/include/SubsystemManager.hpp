@@ -39,6 +39,8 @@ class ApplicationDeinitializer;
 //
 
 namespace subsystemManager {
+class SubsystemRegistrar;
+
 /// @brief Менеджер подсистем.
 class SubsystemManager final : public Subsystem {
 public:
@@ -109,5 +111,7 @@ private:
 
   /// @brief Указатель на экземпляр.
   static inline subsystemManager::SubsystemManager *instance_;
+
+  std::unique_ptr<SubsystemRegistrar> subsystemRegistrar_;
 };
 } // namespace subsystemManager
