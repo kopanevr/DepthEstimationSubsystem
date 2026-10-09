@@ -1,0 +1,61 @@
+#pragma once
+
+//
+
+#include <condition_variable>
+#include <mutex>
+
+//
+
+#include "BitField.hpp"
+
+//
+
+#include <opencv4/opencv2/opencv.hpp>
+
+//
+
+namespace frameGrabber {
+/// @brief
+class FrameBuffer final {
+public:
+  /// @brief Конструктор.
+  FrameBuffer() {}
+
+  /// @brief Деструктор.
+  ~FrameBuffer() = default;
+
+  FrameBuffer(const FrameBuffer &) = delete;
+  FrameBuffer &operator=(const FrameBuffer &) = delete;
+
+  /// @brief
+  /// @param frame
+  void push(const cv::Mat &frame) {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    SET_FLAG(0, isFramePushed);
+    cv_.notify_one();
+  }
+
+  /// @brief
+  void pop(cv::Mat &frame) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    cv_.wait(lock, [this] { return GET_FLAG_STATE(0, isFramePushed); });
+
+    RESET_FLAG(0, isFramePushed);
+  }
+
+private:
+  /// @brief Битовое поле.
+  BIT_FIELD(0, 1, FLAG(isFramePushed));
+
+  /// @brief
+  std::mutex mutex_;
+  /// @brief
+  std::condition_variable cv_;
+
+  /// @brief
+  cv::Mat frame_;
+
+};
+} // namespace frameGrabber

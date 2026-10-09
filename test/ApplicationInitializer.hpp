@@ -56,5 +56,6 @@ private:
   std::unique_ptr<cmd::CommandInterpreter> commandInterpreter_;
    /// @brief Менеджер подсистем.
   std::shared_ptr<subsystemManager::SubsystemManager> subsystemManager_;
+
 };
 } // namespace app
