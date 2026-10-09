@@ -1,9 +1,16 @@
-add_library(FrameGrabber SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/FrameGrabber.cpp)
+
+file(
+  GLOB_RECURSE
+  SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+)
+
+add_library(FrameGrabber SHARED ${SOURCES})
 
 find_package(OpenCV 4 REQUIRED)
 
 target_include_directories(
-  FrameGrabber PUBLIC
+  FrameGrabber PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   ${CMAKE_SOURCE_DIR}/test/Subsystems/Subsystem/include
   ${CMAKE_SOURCE_DIR}/test/Subsystems/SubsystemManager/include

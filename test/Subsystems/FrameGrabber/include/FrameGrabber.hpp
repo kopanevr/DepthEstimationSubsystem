@@ -21,6 +21,9 @@ class SubsystemManager;
 //
 
 namespace frameGrabber {
+class VideoCaptureDevice;
+class VideoCaptureDevicePreparer;
+
 /// @brief
 class FrameGrabber final : public Subsystem {
 public:
@@ -51,7 +54,7 @@ private:
   }
 
   /// @brief Предварительная настройка перед запуском подсистемы.
-  bool setBeforeStartUp() override { return true; }
+  bool setBeforeStartUp() override;
   /// @brief Предварительная настройка перед остановкой подсистемы.
   void setBeforeShutDown() override {}
 
@@ -63,7 +66,9 @@ private:
   static inline FrameGrabber *instance_;
 
   /// @brief
-  std::unique_ptr<frameCapture::VideoCaptureDevice> videoCaptureDevice_;
+  std::unique_ptr<VideoCaptureDevice> videoCaptureDevice_;
+  /// @brief
+  std::unique_ptr<VideoCaptureDevicePreparer> videoCaptureDevicePreparer_;
 
 };
 } // namespace frameGrabber

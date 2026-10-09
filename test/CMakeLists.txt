@@ -9,12 +9,13 @@ add_executable(Application ${SOURCES})
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/FrameGrabber)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager)
 
 add_subdirectory(
   ${CMAKE_SOURCE_DIR}/src/Subsystems/DepthEstimator
   ${CMAKE_BINARY_DIR}/src/Subsystems/DepthEstimator
 )
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/SubsystemManager)
 
 target_include_directories(
   Application PRIVATE
@@ -27,6 +28,7 @@ target_link_libraries(
   Application PRIVATE
   CommandInterpreter
   Logger
+  FrameGrabber
   DepthEstimator
   SubsystemManager
 )
