@@ -36,7 +36,7 @@ std::unique_ptr<ModelInferenceContext> InputTensorsCreator::create() {
   // Установка размера буфера.
   INFO(
     "Размер буфера входного тензора: ",
-    resizeBuffer(
+    resizeRawBuffer(
       inferenceContext_->modelInfo->inputTensorInfo,
       inferenceContext_->inputTensor),
     " [байт]."

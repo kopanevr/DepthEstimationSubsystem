@@ -36,7 +36,7 @@ std::unique_ptr<ModelInferenceContext> OutputTensorsCreator::create() {
   // Установка размера буфера.
   INFO(
     "Размер буфера выходного тензора: ",
-    resizeBuffer(
+    resizeRawBuffer(
       inferenceContext_->modelInfo->outputTensorInfo,
       inferenceContext_->outputTensor),
     " [байт]."

@@ -89,7 +89,7 @@ private:
 
 #define LOG(...) logger::Logger::getInstance()->log(__VA_ARGS__)
 
-#if defined(__cppcpp) && __cplusplus >= 202002L
+#if defined(__cplusplus) && __cplusplus >= 202002L
 
 #ifndef NDEBUG
 #define DEBUG(...) LOG("[ОТЛАДКА] " __VA_OPT__(,) __VA_ARGS__)
