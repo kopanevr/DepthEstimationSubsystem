@@ -20,16 +20,14 @@ target_include_directories(
   Application PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/CommandInterpreter/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/Logger/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/Subsystems/FrameGrabber/include
   ${CMAKE_CURRENT_SOURCE_DIR}/Utilities/BitField/include
 )
-
-target_include_directories(Application PRIVATE ${CMAKE_SOURCE_DIR}/src/Subsystems/DepthEstimator/include)
 
 target_link_libraries(
   Application PRIVATE
   CommandInterpreter
   Logger
+  DepthEstimator
   SubsystemManager
 )
 
@@ -53,5 +51,5 @@ add_custom_command(
   TARGET Application
   POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E md5sum Application > ${CMAKE_SOURCE_DIR}/Application.md5
-  COMMENT "Расчет контрольной файла."
+  COMMENT "Расчет контрольной суммы файла."
 )

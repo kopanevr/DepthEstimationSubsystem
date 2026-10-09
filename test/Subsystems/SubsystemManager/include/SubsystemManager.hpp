@@ -39,8 +39,6 @@ class ApplicationDeinitializer;
 //
 
 namespace subsystemManager {
-class SubsystemRegistrar;
-
 /// @brief Менеджер подсистем.
 class SubsystemManager final : public Subsystem {
 public:
@@ -105,13 +103,12 @@ private:
 
 private:
   /// @brief Количество подсистем.
-  static const size_t subsystemCount_ = static_cast<size_t>(SubsystemId::Count);
+  static constexpr size_t subsystemCount_ = static_cast<size_t>(SubsystemId::Count);
   /// @brief Подсистемы.
   std::array<std::unique_ptr<Subsystem>, subsystemCount_> subsystems_;
 
   /// @brief Указатель на экземпляр.
   static inline subsystemManager::SubsystemManager *instance_;
 
-  std::unique_ptr<SubsystemRegistrar> subsystemRegistrar_;
 };
 } // namespace subsystemManager

@@ -64,5 +64,6 @@ private:
 
   /// @brief
   std::unique_ptr<frameCapture::VideoCaptureDevice> videoCaptureDevice_;
+
 };
 } // namespace frameGrabber

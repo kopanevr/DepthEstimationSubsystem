@@ -8,31 +8,50 @@
 
 //
 
+#include <array>
+#include <memory>
+
+//
+
+class Subsystem;
+
+//
+
 namespace subsystemManager {
 /// @brief
-class SubsystemRegistrar {
+class [[deprecated]] SubsystemRegistrar final {
 public:
-  SubsystemRegistrar() = default;
-  ~SubsystemRegistrar() = default;
+  /// @brief Конструктор.
+  /// @tparam N
+  /// @param subsystems
+  template<std::size_t N>
+  explicit SubsystemRegistrar(std::array<std::unique_ptr<Subsystem>, N> &subsystems)
+      : capacity_(N),
+      index_(0),
+      subsystems_(subsystems.data()) {}
+  /// @brief Деструктор.
+  ~SubsystemRegistrar() =default;
 
-  bool reg();
-
-private:
-
-};
-
-/// @brief
-/// @return
-bool SubsystemRegistrar::reg() {
-  if (i < subsystemCount_) {
-    subsystems_[i].reset(new (std::nothrow) logger::Logger());
-    if (!subsystems_[i]) {
+  /// @brief
+  /// @return
+  bool reg(std::unique_ptr<Subsystem> subsystem) {
+    if (!subsystem || index_ >= capacity_) {
       return false;
     }
-    logger::Logger::instance_ = static_cast<logger::Logger *>(subsystems_[i].get());
-    i++;
-  } else {
-    return false;
+
+    subsystems_[index_] = std::move(subsystem);
+    index_++;
+
+    return true;
   }
-}
+
+private:
+  /// @brief
+  std::size_t capacity_;
+  /// @brief
+  std::size_t index_;
+  /// @brief
+  std::unique_ptr<Subsystem> *subsystems_;
+
+};
 } // namespace subsystemManager

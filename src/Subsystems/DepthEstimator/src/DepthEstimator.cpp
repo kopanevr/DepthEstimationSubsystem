@@ -20,6 +20,7 @@ DepthEstimator::DepthEstimator() {
   // Инициализация.
   init();
 }
+
 /// @brief Деструктор.
 DepthEstimator::~DepthEstimator() = default;
 
